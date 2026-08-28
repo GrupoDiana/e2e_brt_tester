@@ -86,7 +86,7 @@ def _wait_for_action_result(
     return _parse_action_result(reply.arguments)
 
 
-def _wait_for_file_ready(path: Path, timeout_seconds: float = 5.0) -> None:
+def _wait_for_file_ready(path: Path, timeout_seconds: float = 100.0) -> None:
     """Wait until a newly generated file is visible, non-empty and stable.
 
     BeRTA sends /control/actionResult when the recording has finished, but on

@@ -22,7 +22,7 @@ recording:
 
 models:
   - id: DirectPath
-    type: listener_hrtf
+    type: ListenerDirectHRTFConvolutionModel
     enabled: true
     parameters:
       spatialization: true

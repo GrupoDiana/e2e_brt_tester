@@ -1,0 +1,43 @@
+reference_id: analytical_test_8_reference
+wav_file: analytical_test_8_reference.wav
+
+software:
+  brt_version: "3.0.7"
+  berta_renderer_version: "3.13.0"
+
+audio:
+  sample_rate: 48000
+  frame_size: 512
+  duration_seconds: 1.0
+
+recording:
+  command: "/recordIR"
+  type: "wav"
+  period_samples: 0
+  delay_samples: 0
+  impulse_position:
+    x: 7.17
+    y: 7.17
+    z: 0.0
+
+models:
+  - id: FreeField
+    type: FreeFieldEnvironmentModel
+    enabled: true
+    parameters:
+      propagarion_delay: false
+      distance_attenuation: -7.0 dB
+      
+      
+
+resources:
+  hrtf:
+    id: HRTF1
+    file: "resources//HRTF//3DTI_HRTF_SADIE_II_D2_256s_48000Hz_resampled5.sofa"
+    spatial_resolution: 5
+  filter:
+    id: DefaultNFFilters
+    file: "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa" 
+
+notes: >
+  Reference generated for validating the directivity of the source.

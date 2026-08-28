@@ -1,0 +1,102 @@
+{
+	"GeneralSettings": {
+		"SampleRate": 48000,
+		"BufferSize": 256,
+		"BufferFrames": 4,
+		"OSCListenPort": 10017,
+		"ExtrapolationMethod": "NearestPoint",
+		"DefaultInputAudioInterface": -1,
+		"DefaultOutputAudioInterface": -1,
+		"LogFile": true,
+		"LogFilePath": "",
+
+		"_comment_SampleRate": "Sample rate used by the application (in Hz)",
+		"_comment_BufferSize": "Buffer size used by the application (number of samples) ",
+		"_comment_BufferFrames": "The BufferFrames parameter can be used to control stream latency in the Windows DirectSound, Linux OSS, and Linux Alsa APIs only. A value of two is usually the smallest allowed. Larger numbers can potentially result in more robust stream performance, though likely at the cost of stream latency. The value set by the user is replaced during execution of the RtAudio::openStream() function by the value actually used by the system.",
+		"_comment_OSCListenPort": "OSC Server listenning port. This is the port on which BeRTA is waiting to receive OSC messages.",
+		"_comment_ExtrapolationMethod": "Select the extrapolation method. Options: ZeroInsertion, NearestPoint. This shall be used, if necessary, during the loading of HRTFs or DirectivityTF SOFA files.",
+		"_comment_LogFile": "Selects whether to save a log file or not.",
+		"_comment_LogFilePath": "Folder where the log file is stored. By default the application saves the log files in the subfolder ‘data’ inside the installation folder. On windows, if the installation folder is ‘Program Files’, you will need to run the program with administrator permissions."
+	},
+	"ModelsArchitecture": {
+		"Listeners": [ "DefaultListener" ],
+		"ListenerModels": [
+			{
+				"ID": "DirectPath",
+				"Model": "ListenerAmbisonicVirtualLoudspeakersModel"
+			}
+		],
+		"EnvironmentModels": [],
+		"BilateralFilters": [],
+		"ConnectSourcesTo": [ "DirectPath" ],
+		"Model2ModelConnections": [],
+		"ConnectToListener": [
+			{
+				"ListenerID": "DefaultListener",
+				"ModelID": "DirectPath"
+			}
+		],
+
+		"_comment_Listeners": "Defines the physical listener(s), by ID, for which sound will be rendered. Currently the GUI only supports one listener, but in future versions of the application it will be fully functional.",
+		"_comment_ListenerModel": "All the listener models to be instantiated for rendering are defined here. They are defined by an ID and by the type of model. The available model types are: ListenerDirectHRTFConvolutionModel, ListenerDirectBRIRConvolutionModel, ListenerAmbisonicVirtualLoudspeakersModel, ListenerAmbisonicReverberantVirtualLoudspeakersModel. For more information please refer to the documentation.",
+		"_comment_EnvironmentModels": "All environment models that are instantiated for rendering are defined here. They are defined by an ID and by the type of model. The available environment models types are: SDNEnvironmentModel and FreeFieldEnvironmentModel",
+		"_comment_BilateralFilters": "All bilateral filters that will be instantiated for rendering are defined here. They are defined by an ID and by the model type. The available binaural filter model are: SOSBilateralFilter (they load the filter coefficients from a SOFA file).",
+		"_comment_ConnectSourcesTo": "Defines here to which models each of the audio sources is connected when loaded. Sources can be connected to either listener models or environment models.",
+		"_comment_Model2ModelConnections": "Here you define how the interconnections between the different models (environment, listening and binaural filters) will be made. The outputs of the “OriginID” models will be connected to the inputs of the “DestinationID” models. For more information, please refer to the web documentation.",
+		"_comment_ConnectToListener": "It is defined here which models are interfaced with the listeners, more specifically the output of the listener models will be connected to the inputs of the listener. The listener will perform the mixing. For more information please refer to the documentation."
+	},
+	"Resources": {
+		"HRTFs": [
+			{
+				"ID": "HRTF1",
+				"fileName": "resources//HRTF//3DTI_HRTF_SADIE_II_D2_256s_48000Hz_resampled5.sofa",
+				"spatialResolution": 5
+			}
+		],
+		"_comment_HRTFs": "List of HRTFs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the HRTF. If one has the ID DefaultHRTF it will be assigned to the listener by default. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder). spatialResolution is the Step for the HRTF offline interpolation process (in degrees).",
+
+		"BRIRs": [
+		],
+		"_comment_BRIRs": "List of BRIRs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the HRTF. If one has the ID DefaultHRTF it will be assigned to the listener by default. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder). spatialResolution is the Step for the BRIR offline interpolation process (in degrees). The loaded BRIR can be windowed, using a fade-in and fade-out mechanism. fadeInBegin indicates the midpoint (50%) of the rising slope of the window, in seconds. risetime indicates the rising time, also in seconds. fadeOutCutoff indicates the midpoint (50%) of the falling slope of the window. fallTime indicates the falling time, all in seconds.",
+
+		"Filters": [
+			{
+				"ID": "DefaultNFFilters",
+				"fileName": "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa"
+			}
+		],
+		"_comment_Filters": "List of filter coefficients to be loaded when the application starts. SOS filter coefficients can be loaded for IIR filters, or impulse response for FIR filters. Leave blank ([]) if you do not wish to load any. The ID is used as a unique identifier for the filter coefficients. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder).",
+
+		"Directivities": [
+		],
+		"_comment_Directivities": "List of Directivities to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the DIrectivityTF. The Directivity must be assigned to a soundsource using the ID. Filename is the name and realtive path to the sofa file. It must be stored in the folder bin/data (which can be found inside the installation folder). resamplingStep is the Step for the Directivity offline interpolation process (in degrees)",
+
+		"Rooms": [
+		],
+		"_comment_Rooms": " List of room definitions to load into the application at startup. Leave it blank ([]) if you do not want to load any rooms. These definitions can be made: (1) using the length, width, and height if you want to define a shoebox-shaped room. (2) By loading OBJ files if you want an arbitrary room shape.  The ID is used as a unique identifier for the filter coefficients. The file name is the name and path to the OBJ file. If a relative path is used, the file must be stored in the bin/data folder (located inside the installation folder)."
+	},
+	"SoundSources": [
+
+	],
+	"_comment_SoundSources": "List of sound sources that will be loaded when the application starts. The full name of the file including its path and the source model to be used for rendering must be specified. The available source model options are OmnidirectionalModel or DirectivityModel. Leave it blank if you don't want to load any of them automatically, they can be loaded later by OSC.",
+	"SceneConfiguration": [
+		{
+			"command": "/listener/setHRTF",
+			"parameters": [ "DefaultListener", "HRTF1" ]
+		},
+		{
+			"command": "/listener/setAmbisonicsOrder",
+			"parameters": [ "DirectPath", 1 ]
+		},
+		{
+			"command": "/listener/setSOSFilters",
+			"parameters": [ "DefaultListener", "DefaultNFFilters" ]
+		},
+		{
+			"command": "/listener/enableNearFieldEffect",
+			"parameters": [ "DefaultListener", "true" ]
+		}
+		
+	],
+	"_comment_SceneConfiguration": "In this section you can load configuration parameters, following the OSC format."
+}
