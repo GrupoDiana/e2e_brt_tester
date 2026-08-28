@@ -7,6 +7,7 @@ import time
 
 from berta_tester.audio_io import AudioReadError, read_stereo_wav_float
 from berta_tester.audio_metrics import ComparisonStatus, StereoComparisonResult, compare_stereo_audio
+from berta_tester.console_style import format_status
 from berta_tester.paths import project_root
 from berta_tester.test_definition import TestDefinition
 from berta_tester.test_runner import TestSession
@@ -275,14 +276,14 @@ def print_analytical_summary(
             print(f"  Possible channel swap: {comparison.possible_channel_swap}")
 
     print()
-    print(f"Final result: {result.status.value}")
+    print(f"Final result: {format_status(result.status)}")
     print(f"Reason: {result.reason}")
     print()
 
 
 def print_analytical_compact_summary(result: AnalyticalImpulseResponseResult) -> None:
     """Print the compact report used by the non-verbose menu action."""
-    print(f"Test result: {result.status.value}")
+    print(f"Test result: {format_status(result.status)}")
     print(f"Left channel NRMSE: {_format_percent(_left_nrmse(result))}")
     print(f"Right channel NRMSE: {_format_percent(_right_nrmse(result))}")
 
