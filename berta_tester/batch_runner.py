@@ -9,6 +9,7 @@ from berta_tester.analytical_tests import (
     execute_analytical_impulse_response_test,
 )
 from berta_tester.audio_metrics import ComparisonStatus
+from berta_tester.console_style import format_status, format_status_count
 from berta_tester.test_definition import TestDefinition
 from berta_tester.test_runner import TestSession, start_test_session
 
@@ -156,7 +157,7 @@ def run_all_analytical_tests(
         entries.append(entry)
 
         if show_progress:
-            print(f"Test result: {entry.status.value}")
+            print(f"Test result: {format_status(entry.status)}")
             print(f"Left channel NRMSE: {_format_percent(entry.left_nrmse_percent)}")
             print(f"Right channel NRMSE: {_format_percent(entry.right_nrmse_percent)}")
             if entry.status is ComparisonStatus.ERROR:
@@ -179,7 +180,7 @@ def print_analytical_batch_summary(result: AnalyticalBatchResult) -> None:
     for entry in result.entries:
         print()
         print(f"[{entry.test.id}] {entry.test.name}")
-        print(f"Test result: {entry.status.value}")
+        print(f"Test result: {format_status(entry.status)}")
         print(f"Left channel NRMSE: {_format_percent(entry.left_nrmse_percent)}")
         print(f"Right channel NRMSE: {_format_percent(entry.right_nrmse_percent)}")
         if entry.status is not ComparisonStatus.PASS:
@@ -189,7 +190,7 @@ def print_analytical_batch_summary(result: AnalyticalBatchResult) -> None:
     print("Summary")
     print("-------")
     print(f"Total: {result.total}")
-    print(f"PASS: {result.passed}")
-    print(f"FAIL: {result.failed}")
-    print(f"ERROR: {result.errors}")
+    print(format_status_count("PASS", result.passed))
+    print(format_status_count("FAIL", result.failed))
+    print(format_status_count("ERROR", result.errors))
     print()
