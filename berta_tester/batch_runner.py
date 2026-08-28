@@ -165,9 +165,11 @@ def run_all_analytical_tests(
 
     return AnalyticalBatchResult(entries=tuple(entries))
 
+def _plain_status_text(status: ComparisonStatus) -> str:
+    return status.value
 
 def print_analytical_batch_summary(result: AnalyticalBatchResult) -> None:
-    """Print the final compact summary for a completed analytical batch."""
+    """Print the final compact table summary for a completed analytical batch."""
     print()
     print("Analytical batch results")
     print("------------------------")
@@ -177,14 +179,51 @@ def print_analytical_batch_summary(result: AnalyticalBatchResult) -> None:
         print()
         return
 
+    id_header = "ID"
+    name_header = "Name"
+    result_header = "Result"
+
+    id_values = [f"[{entry.test.id}]" for entry in result.entries]
+    name_values = [entry.test.name for entry in result.entries]
+    result_values = [entry.status.value for entry in result.entries]
+
+    id_width = max(len(id_header), *(len(value) for value in id_values))
+    name_width = max(len(name_header), *(len(value) for value in name_values))
+    result_width = max(len(result_header), *(len(value) for value in result_values))
+
+    header = (
+        f"{id_header:<{id_width}}  "
+        f"{name_header:<{name_width}}  "
+        f"{result_header:<{result_width}}"
+    )
+    separator = (
+        f"{'-' * id_width}  "
+        f"{'-' * name_width}  "
+        f"{'-' * result_width}"
+    )
+
+    print()
+    print(header)
+    print(separator)
+
     for entry in result.entries:
+        print(
+            f"{f'[{entry.test.id}]':<{id_width}}  "
+            f"{entry.test.name:<{name_width}}  "
+            f"{format_status(entry.status):<{result_width}}"
+        )
+
+    failed_or_error_entries = tuple(
+        entry for entry in result.entries
+        if entry.status is not ComparisonStatus.PASS
+    )
+
+    if failed_or_error_entries:
         print()
-        print(f"[{entry.test.id}] {entry.test.name}")
-        print(f"Test result: {format_status(entry.status)}")
-        print(f"Left channel NRMSE: {_format_percent(entry.left_nrmse_percent)}")
-        print(f"Right channel NRMSE: {_format_percent(entry.right_nrmse_percent)}")
-        if entry.status is not ComparisonStatus.PASS:
-            print(f"Reason: {entry.reason}")
+        print("Failure / error details")
+        print("-----------------------")
+        for entry in failed_or_error_entries:
+            print(f"[{entry.test.id}] {entry.test.name}: {entry.reason}")
 
     print()
     print("Summary")
