@@ -72,12 +72,13 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="4",
-        name="Directivity test listener model disabled, source in cardioid",
+        name="Directivity test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: Directivity\n"
             "\t-Impulse position: (-1,0,0)\n"
             "\t-Record duration: 2 second\n"
+            "\t-Source directivity: in cardioid\n"
         ),
         settings_file="analytical_test_4.json",
         test_type=TestType.ANALYTICAL,
@@ -91,14 +92,16 @@ TESTS: tuple[TestDefinition, ...] = (
         ir_position=(-1.0, 0.0, 0.0),
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
-    ),TestDefinition(
+    ),
+    TestDefinition(
         id="5",
-        name="Directivity test listener model disabled, source out of cardioid",
+        name="Directivity test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: Directivity\n"
             "\t-Impulse position: (-0.9,0.41,0)\n"
             "\t-Record duration: 2 second\n"
+            "\t-Source directivity: out of cardioid\n"
         ),
         settings_file="analytical_test_5.json",
         test_type=TestType.ANALYTICAL,
@@ -115,12 +118,14 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="6",
-        name="Directivity test listener model disabled, source in cardioid (interpolation 15)",
+        name="Directivity test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: Directivity\n"
             "\t-Impulse position: (-1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
+            "\t-Source directivity: in cardioid\n"
+            "\t-Interpolation: 15\n"
         ),
         settings_file="analytical_test_6.json",
         test_type=TestType.ANALYTICAL,
@@ -137,12 +142,14 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="7",
-        name="FreeField test listener model disabled, distance attenuation 6db, source (1m)",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (0.71,0.71,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Distance attenuation: 6db\n"
+            "\t-Source distance: 1m\n"
         ),
         settings_file="analytical_test_7.json",
         test_type=TestType.ANALYTICAL,
@@ -159,12 +166,14 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="7.1",
-        name="FreeField test listener model disabled, distance attenuation 6db, source (10m)",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (7.17,7.17,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Distance attenuation: 6db\n"
+            "\t-Source distance: 10m\n"
         ),
         settings_file="analytical_test_7.json",
         test_type=TestType.ANALYTICAL,
@@ -181,12 +190,14 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="8",
-        name="FreeField test listener model disabled, distance attenuation 7db, source (1m)",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (0.71,0.71,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Distance attenuation: 7db\n"
+            "\t-Source distance: 1m\n"
         ),
         settings_file="analytical_test_8.json",
         test_type=TestType.ANALYTICAL,
@@ -203,12 +214,14 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="8.1",
-        name="FreeField test listener model disabled, distance attenuation 7db, source (10m)",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (7.17,7.17,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Distance attenuation: 7db\n"
+            "\t-Source distance: 10m\n"
         ),
         settings_file="analytical_test_8.json",
         test_type=TestType.ANALYTICAL,
@@ -225,12 +238,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="10",
-        name="FreeField test listener model disabled, propagation delay enabled, source (1m), BS=512",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (0.71,0.71,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Propagation delay: enabled\n"
+            "\t-Source distance: 1m\n"
+            "\t-Buffer size: 512\n"
         ),
         settings_file="analytical_test_10.json",
         test_type=TestType.ANALYTICAL,
@@ -247,12 +263,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="10.1",
-        name="FreeField test listener model disabled, propagation delay enabled, source (10m), BS=512",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (7.17,7.17,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Propagation delay: enabled\n"
+            "\t-Source distance: 10m\n"
+            "\t-Buffer size: 512\n"
         ),
         settings_file="analytical_test_10.json",
         test_type=TestType.ANALYTICAL,
@@ -269,12 +288,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="10.2",
-        name="FreeField test listener model disabled, propagation delay enabled, source (100m), BS=512",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (71.7,71.7,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Propagation delay: enabled\n"
+            "\t-Source distance: 100m\n"
+            "\t-Buffer size: 512\n"
         ),
         settings_file="analytical_test_10.json",
         test_type=TestType.ANALYTICAL,
@@ -291,12 +313,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="11",
-        name="FreeField test listener model disabled, propagation delay enabled, source (1m), BS=2048",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (0.71,0.71,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Propagation delay: enabled\n"
+            "\t-Source distance: 1m\n"
+            "\t-Buffer size: 2048\n"
         ),
         settings_file="analytical_test_11.json",
         test_type=TestType.ANALYTICAL,
@@ -313,12 +338,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="11.1",
-        name="FreeField test listener model disabled, propagation delay enabled, source (10m), BS=2048",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (7.17,7.17,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Propagation delay: enabled\n"
+            "\t-Source distance: 10m\n"
+            "\t-Buffer size: 2048\n"
         ),
         settings_file="analytical_test_11.json",
         test_type=TestType.ANALYTICAL,
@@ -335,12 +363,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="11.2",
-        name="FreeField test listener model disabled, propagation delay enabled, source (100m), BS=2048",
+        name="FreeField test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: FreeField\n"
             "\t-Impulse position: (71.7,71.7,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Propagation delay: enabled\n"
+            "\t-Source distance: 100m\n"
+            "\t-Buffer size: 2048\n"
         ),
         settings_file="analytical_test_11.json",
         test_type=TestType.ANALYTICAL,
@@ -357,12 +388,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="12",
-        name="ISM test listener model disabled, ISM order = 1, source (0.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_12.json",
         test_type=TestType.ANALYTICAL,
@@ -379,12 +414,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="12.1",
-        name="ISM test listener model disabled, ISM order = 1, source (2.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_12.json",
         test_type=TestType.ANALYTICAL,
@@ -401,12 +440,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="13",
-        name="ISM test listener model disabled, ISM order = 1, source (0.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_13.json",
         test_type=TestType.ANALYTICAL,
@@ -423,12 +466,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="13.1",
-        name="ISM test listener model disabled, ISM order = 1, source (2.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_13.json",
         test_type=TestType.ANALYTICAL,
@@ -445,12 +492,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="14",
-        name="ISM test listener model disabled, ISM order = 1, source (0.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_14.json",
         test_type=TestType.ANALYTICAL,
@@ -467,12 +518,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="14.1",
-        name="ISM test listener model disabled, ISM order = 1, source (2.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_14.json",
         test_type=TestType.ANALYTICAL,
@@ -489,12 +544,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="15",
-        name="ISM test listener model disabled, ISM order = 1, source (0.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_15.json",
         test_type=TestType.ANALYTICAL,
@@ -511,12 +570,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="15.1",
-        name="ISM test listener model disabled, ISM order = 1, source (2.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 1\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_15.json",
         test_type=TestType.ANALYTICAL,
@@ -533,12 +596,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="16",
-        name="ISM test listener model disabled, ISM order = 3, source (0.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_16.json",
         test_type=TestType.ANALYTICAL,
@@ -555,12 +622,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="16.1",
-        name="ISM test listener model disabled, ISM order = 3, source (2.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_16.json",
         test_type=TestType.ANALYTICAL,
@@ -577,12 +648,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="17",
-        name="ISM test listener model disabled, ISM order = 3, source (0.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_17.json",
         test_type=TestType.ANALYTICAL,
@@ -599,12 +674,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="17.1",
-        name="ISM test listener model disabled, ISM order = 3, source (2.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_17.json",
         test_type=TestType.ANALYTICAL,
@@ -621,12 +700,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="18",
-        name="ISM test listener model disabled, ISM order = 3, source (0.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_18.json",
         test_type=TestType.ANALYTICAL,
@@ -643,12 +726,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="18.1",
-        name="ISM test listener model disabled, ISM order = 3, source (2.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_18.json",
         test_type=TestType.ANALYTICAL,
@@ -665,12 +752,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="19",
-        name="ISM test listener model disabled, ISM order = 3, source (0.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_19.json",
         test_type=TestType.ANALYTICAL,
@@ -687,12 +778,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="19.1",
-        name="ISM test listener model disabled, ISM order = 3, source (2.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 3\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_19.json",
         test_type=TestType.ANALYTICAL,
@@ -709,12 +804,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="20",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (0.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_20.json",
         test_type=TestType.ANALYTICAL,
@@ -731,12 +831,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="20.1",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (2.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_20.json",
         test_type=TestType.ANALYTICAL,
@@ -753,12 +858,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="21",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (0.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_21.json",
         test_type=TestType.ANALYTICAL,
@@ -775,12 +885,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="21.1",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (2.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_21.json",
         test_type=TestType.ANALYTICAL,
@@ -797,12 +912,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="22",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (0.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_22.json",
         test_type=TestType.ANALYTICAL,
@@ -819,12 +939,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="22.1",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (2.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_22.json",
         test_type=TestType.ANALYTICAL,
@@ -841,12 +966,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="23",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (0.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_23.json",
         test_type=TestType.ANALYTICAL,
@@ -863,12 +993,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="23.1",
-        name="ISM test listener model disabled, ISM order=5, distance=5, source (2.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 5\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_23.json",
         test_type=TestType.ANALYTICAL,
@@ -885,12 +1020,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="24",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (0.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_24.json",
         test_type=TestType.ANALYTICAL,
@@ -907,12 +1047,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="24.1",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (2.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_24.json",
         test_type=TestType.ANALYTICAL,
@@ -929,12 +1074,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="25",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (0.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_25.json",
         test_type=TestType.ANALYTICAL,
@@ -951,12 +1101,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="25.1",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (2.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_25.json",
         test_type=TestType.ANALYTICAL,
@@ -973,12 +1128,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="26",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (0.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_26.json",
         test_type=TestType.ANALYTICAL,
@@ -995,12 +1155,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="26.1",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (2.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_26.json",
         test_type=TestType.ANALYTICAL,
@@ -1017,12 +1182,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="27",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (0.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_27.json",
         test_type=TestType.ANALYTICAL,
@@ -1039,12 +1209,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="27.1",
-        name="ISM test listener model disabled, ISM order=5, distance=10, source (2.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 10\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_27.json",
         test_type=TestType.ANALYTICAL,
@@ -1061,12 +1236,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="28",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (0.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_28.json",
         test_type=TestType.ANALYTICAL,
@@ -1083,12 +1263,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="28.1",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (2.5m), BS=512, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_28.json",
         test_type=TestType.ANALYTICAL,
@@ -1105,12 +1290,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="29",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (0.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_29.json",
         test_type=TestType.ANALYTICAL,
@@ -1127,12 +1317,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="29.1",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (2.5m), BS=512, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_29.json",
         test_type=TestType.ANALYTICAL,
@@ -1149,12 +1344,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="30",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (0.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_30.json",
         test_type=TestType.ANALYTICAL,
@@ -1171,12 +1371,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="30.1",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (2.5m), BS=2048, coef.abs=0.5",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_30.json",
         test_type=TestType.ANALYTICAL,
@@ -1193,12 +1398,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="31",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (0.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_31.json",
         test_type=TestType.ANALYTICAL,
@@ -1215,12 +1425,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="31.1",
-        name="ISM test listener model disabled, ISM order=5, distance=20, source (2.5m), BS=2048, coef.abs=0.1",
+        name="ISM test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ISM\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-ISM order: 5\n"
+            "\t-Distance parameter: 20\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_31.json",
         test_type=TestType.ANALYTICAL,
@@ -1237,12 +1452,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="32",
-        name="SDN test listener model disabled, source (0.5m), BS=512, coef.abs=0.5",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_32.json",
         test_type=TestType.ANALYTICAL,
@@ -1259,12 +1477,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="32.1",
-        name="SDN test listener model disabled, source (2.5m), BS=512, coef.abs=0.5",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_32.json",
         test_type=TestType.ANALYTICAL,
@@ -1281,12 +1502,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="33",
-        name="SDN test listener model disabled, source (0.5m), BS=512, coef.abs=0.1",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_33.json",
         test_type=TestType.ANALYTICAL,
@@ -1303,12 +1527,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="33.1",
-        name="SDN test listener model disabled, source (2.5m), BS=512, coef.abs=0.1",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 512\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_33.json",
         test_type=TestType.ANALYTICAL,
@@ -1325,12 +1552,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="34",
-        name="SDN test listener model disabled, source (0.5m), BS=2048, coef.abs=0.5",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_34.json",
         test_type=TestType.ANALYTICAL,
@@ -1347,12 +1577,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="34.1",
-        name="SDN test listener model disabled, source (2.5m), BS=2048, coef.abs=0.5",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.5\n"
         ),
         settings_file="analytical_test_34.json",
         test_type=TestType.ANALYTICAL,
@@ -1369,12 +1602,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
         TestDefinition(
         id="35",
-        name="SDN test listener model disabled, source (0.5m), BS=2048, coef.abs=0.1",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.35,0.35,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 0.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_35.json",
         test_type=TestType.ANALYTICAL,
@@ -1391,12 +1627,15 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="35.1",
-        name="SDN test listener model disabled, source (2.5m), BS=2048, coef.abs=0.1",
+        name="SDN test listener model disabled",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (1.0,2.25,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Source distance: 2.5m\n"
+            "\t-Buffer size: 2048\n"
+            "\t-Absorption coefficient: 0.1\n"
         ),
         settings_file="analytical_test_35.json",
         test_type=TestType.ANALYTICAL,
@@ -1413,12 +1652,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="36",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=0.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_36.json",
         test_type=TestType.ANALYTICAL,
@@ -1435,12 +1678,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="36.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=1.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_36.json",
         test_type=TestType.ANALYTICAL,
@@ -1457,12 +1704,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="36.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=10m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_36.json",
         test_type=TestType.ANALYTICAL,
@@ -1479,12 +1730,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="37",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=0.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_37.json",
         test_type=TestType.ANALYTICAL,
@@ -1501,12 +1756,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="37.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=1.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_37.json",
         test_type=TestType.ANALYTICAL,
@@ -1523,12 +1782,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="37.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=10m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_37.json",
         test_type=TestType.ANALYTICAL,
@@ -1545,12 +1808,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="38",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=0.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_38.json",
         test_type=TestType.ANALYTICAL,
@@ -1567,12 +1834,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="38.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=1.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_38.json",
         test_type=TestType.ANALYTICAL,
@@ -1589,12 +1860,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="38.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=10m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_38.json",
         test_type=TestType.ANALYTICAL,
@@ -1611,12 +1886,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="39",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=0.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_39.json",
         test_type=TestType.ANALYTICAL,
@@ -1633,12 +1912,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="39.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=1.2m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_39.json",
         test_type=TestType.ANALYTICAL,
@@ -1655,12 +1938,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="39.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=10m, BufferSize=128",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_39.json",
         test_type=TestType.ANALYTICAL,
@@ -1677,12 +1964,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="40",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=0.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_40.json",
         test_type=TestType.ANALYTICAL,
@@ -1699,12 +1990,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="40.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=1.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_40.json",
         test_type=TestType.ANALYTICAL,
@@ -1721,12 +2016,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="40.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=10m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_40.json",
         test_type=TestType.ANALYTICAL,
@@ -1743,12 +2042,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="41",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=0.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_41.json",
         test_type=TestType.ANALYTICAL,
@@ -1765,12 +2068,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="41.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=1.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_41.json",
         test_type=TestType.ANALYTICAL,
@@ -1787,12 +2094,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="41.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=10m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_41.json",
         test_type=TestType.ANALYTICAL,
@@ -1809,12 +2120,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="42",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=0.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_42.json",
         test_type=TestType.ANALYTICAL,
@@ -1831,12 +2146,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="42.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=1.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_42.json",
         test_type=TestType.ANALYTICAL,
@@ -1853,12 +2172,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="42.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=10m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_42.json",
         test_type=TestType.ANALYTICAL,
@@ -1875,12 +2198,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="43",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=0.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_43.json",
         test_type=TestType.ANALYTICAL,
@@ -1897,12 +2224,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="43.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=1.2m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_43.json",
         test_type=TestType.ANALYTICAL,
@@ -1919,12 +2250,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="43.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=10m, BufferSize=256",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_43.json",
         test_type=TestType.ANALYTICAL,
@@ -1941,12 +2276,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="44",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=0.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_44.json",
         test_type=TestType.ANALYTICAL,
@@ -1963,12 +2302,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="44.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=1.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_44.json",
         test_type=TestType.ANALYTICAL,
@@ -1985,12 +2328,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="44.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field ON, distance=10m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_44.json",
         test_type=TestType.ANALYTICAL,
@@ -2007,12 +2354,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="45",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=0.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_45.json",
         test_type=TestType.ANALYTICAL,
@@ -2029,12 +2380,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="45.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=1.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_45.json",
         test_type=TestType.ANALYTICAL,
@@ -2051,12 +2406,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="45.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation ON, Near Field OFF, distance=10m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: ON\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_45.json",
         test_type=TestType.ANALYTICAL,
@@ -2073,12 +2432,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="46",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=0.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_46.json",
         test_type=TestType.ANALYTICAL,
@@ -2095,12 +2458,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="46.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=1.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_46.json",
         test_type=TestType.ANALYTICAL,
@@ -2117,12 +2484,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="46.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field ON, distance=10m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_46.json",
         test_type=TestType.ANALYTICAL,
@@ -2139,12 +2510,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="47",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=0.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_47.json",
         test_type=TestType.ANALYTICAL,
@@ -2161,12 +2536,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="47.1",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=1.2m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_47.json",
         test_type=TestType.ANALYTICAL,
@@ -2183,12 +2562,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="47.2",
-        name="ListenerDirectHRTFConvolutionModel test, interpolation OFF, Near Field OFF, distance=10m, BufferSize=1024",
+        name="ListenerDirectHRTFConvolutionModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Interpolation: OFF\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 10m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_47.json",
         test_type=TestType.ANALYTICAL,
@@ -2205,12 +2588,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="48",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=0.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_48.json",
         test_type=TestType.ANALYTICAL,
@@ -2227,12 +2614,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="48.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_48.json",
         test_type=TestType.ANALYTICAL,
@@ -2249,12 +2640,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="48.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_48.json",
         test_type=TestType.ANALYTICAL,
@@ -2271,12 +2666,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="49",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=0.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_49.json",
         test_type=TestType.ANALYTICAL,
@@ -2293,12 +2692,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="49.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_49.json",
         test_type=TestType.ANALYTICAL,
@@ -2315,12 +2718,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="49.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_49.json",
         test_type=TestType.ANALYTICAL,
@@ -2337,12 +2744,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="50",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=0.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_50.json",
         test_type=TestType.ANALYTICAL,
@@ -2359,12 +2770,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="50.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_50.json",
         test_type=TestType.ANALYTICAL,
@@ -2381,12 +2796,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="50.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_50.json",
         test_type=TestType.ANALYTICAL,
@@ -2403,12 +2822,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="51",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=0.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_51.json",
         test_type=TestType.ANALYTICAL,
@@ -2425,12 +2848,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="51.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_51.json",
         test_type=TestType.ANALYTICAL,
@@ -2447,12 +2874,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="51.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=1.2m, BufferSize=128",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 128\n"
         ),
         settings_file="analytical_test_51.json",
         test_type=TestType.ANALYTICAL,
@@ -2469,12 +2900,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="52",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=0.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_52.json",
         test_type=TestType.ANALYTICAL,
@@ -2491,12 +2926,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="52.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_52.json",
         test_type=TestType.ANALYTICAL,
@@ -2513,12 +2952,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="52.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_52.json",
         test_type=TestType.ANALYTICAL,
@@ -2535,12 +2978,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="53",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=0.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_53.json",
         test_type=TestType.ANALYTICAL,
@@ -2557,12 +3004,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="53.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_53.json",
         test_type=TestType.ANALYTICAL,
@@ -2579,12 +3030,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="53.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_53.json",
         test_type=TestType.ANALYTICAL,
@@ -2601,12 +3056,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="54",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=0.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_54.json",
         test_type=TestType.ANALYTICAL,
@@ -2623,12 +3082,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="54.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_54.json",
         test_type=TestType.ANALYTICAL,
@@ -2645,12 +3108,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="54.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_54.json",
         test_type=TestType.ANALYTICAL,
@@ -2667,12 +3134,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="55",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=0.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_55.json",
         test_type=TestType.ANALYTICAL,
@@ -2689,12 +3160,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="55.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_55.json",
         test_type=TestType.ANALYTICAL,
@@ -2711,12 +3186,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="55.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=1.2m, BufferSize=256",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 256\n"
         ),
         settings_file="analytical_test_55.json",
         test_type=TestType.ANALYTICAL,
@@ -2733,12 +3212,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="56",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=0.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_56.json",
         test_type=TestType.ANALYTICAL,
@@ -2755,12 +3238,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="56.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_56.json",
         test_type=TestType.ANALYTICAL,
@@ -2777,12 +3264,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="56.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field ON, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_56.json",
         test_type=TestType.ANALYTICAL,
@@ -2799,12 +3290,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="57",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=0.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_57.json",
         test_type=TestType.ANALYTICAL,
@@ -2821,12 +3316,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="57.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_57.json",
         test_type=TestType.ANALYTICAL,
@@ -2843,12 +3342,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="57.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=1, Near Field OFF, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 1\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_57.json",
         test_type=TestType.ANALYTICAL,
@@ -2865,12 +3368,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="58",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=0.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_58.json",
         test_type=TestType.ANALYTICAL,
@@ -2887,12 +3394,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="58.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_58.json",
         test_type=TestType.ANALYTICAL,
@@ -2909,12 +3420,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="58.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field ON, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: ON\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_58.json",
         test_type=TestType.ANALYTICAL,
@@ -2931,12 +3446,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="59",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=0.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: ListenerDirectHRTFConvolutionModel\n"
             "\t-Impulse position: (0.14,0.14,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 0.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_59.json",
         test_type=TestType.ANALYTICAL,
@@ -2953,12 +3472,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="59.1",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (0.85,0.85,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_59.json",
         test_type=TestType.ANALYTICAL,
@@ -2975,12 +3498,16 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
      TestDefinition(
         id="59.2",
-        name="ListenerAmbisonicVirtualLoudspeakersModel test, ambisonicOrder=3, Near Field OFF, distance=1.2m, BufferSize=1024",
+        name="ListenerAmbisonicVirtualLoudspeakersModel test",
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Model to be tested: SDN\n"
             "\t-Impulse position: (7.1,7.1,0.0)\n"
             "\t-Record duration: 1 second\n"
+            "\t-Ambisonic order: 3\n"
+            "\t-Near field: OFF\n"
+            "\t-Distance parameter: 1.2m\n"
+            "\t-Buffer size: 1024\n"
         ),
         settings_file="analytical_test_59.json",
         test_type=TestType.ANALYTICAL,
@@ -2996,7 +3523,7 @@ TESTS: tuple[TestDefinition, ...] = (
         detect_channel_swap=True,
     ),
     TestDefinition(
-        id="39",
+        id="339",
         name="Perceptual localization test",
         description=(
             "You will hear the source in front of you and it will move toward one ear."
