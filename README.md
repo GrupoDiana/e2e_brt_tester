@@ -93,7 +93,7 @@ When the application starts, the main menu is:
 [0] Exit
 ```
 
-Selecting one of the test categories shows only the tests of that type, as declared in `test_registry.py`.
+Analytical tests are grouped by their `test_target`, so the first analytical menu shows the object under test instead of printing every test definition.
 
 Example:
 
@@ -102,18 +102,21 @@ Example:
  Path: Main Menu / Analytical tests 
 ------------------------------------------
 
-Available tests:
+Analytical test targets:
 
-[1] Analytical impulse response test (analytical)
-    Generates a stereo impulse response with BeRTA and compares it against a stereo WAV reference using strict NRMSE per channel.
-    Settings file: Settingsfiles/analytical_test1.json
+[1] ListenerDirectHRTFConvolutionModel (39 tests)
+[2] Directivity (3 tests)
+[3] FreeFieldEnvironmentModel (10 tests)
+[4] ISMEnvironmentModel (40 tests)
+[5] SDNEnvironmentModel (8 tests)
+[6] ListenerAmbisonicVirtualLoudspeakersModel (36 tests)
 
 [A] Run all analytical tests
 [9] Back to main menu
 [0] Exit
 ```
 
-The `[A] Run all analytical tests` option appears only in the analytical tests menu. It launches and runs all analytical tests sequentially.
+Selecting a target opens a compact, one-line list of the tests in that family. That menu also provides `[A] Run all tests for <target>`. The top-level `[A] Run all analytical tests` option still launches every analytical test sequentially.
 
 After selecting an individual test, BeRTA Renderer is launched and verified through OSC. Once the connection is ready, the live session menu is shown:
 
@@ -175,13 +178,14 @@ The YAML structure is intentionally flexible. The tester does not require a fixe
 
 ## Batch analytical execution
 
-The analytical tests menu includes:
+The analytical menus include two batch scopes:
 
 ```text
-[A] Run all analytical tests
+Analytical target menu: [A] Run all analytical tests
+Selected family menu:   [A] Run all tests for <target>
 ```
 
-This option runs all tests declared with:
+The first option runs all tests declared with `TestType.ANALYTICAL`. The second passes only the tests whose `test_target` matches the selected family to the same batch runner.
 
 ```python
 TestType.ANALYTICAL
@@ -204,7 +208,7 @@ For each analytical test, the batch runner:
 
 Each test uses its own BeRTA process because different analytical tests may use different settings files. This keeps the tests isolated and avoids relying on runtime reloading of BeRTA configurations.
 
-At the end, the batch runner prints a compact summary for all analytical tests, including the number of `PASS`, `FAIL`, and `ERROR` results.
+At the end, the batch runner prints the same compact table for the selected family or for all analytical tests, including the number of `PASS`, `FAIL`, and `ERROR` results.
 
 Example:
 
@@ -212,16 +216,14 @@ Example:
 Analytical batch results
 ------------------------
 
-[1] Analytical impulse response test - Direct path
-Test result: PASS
-Left channel NRMSE: 0.002341%
-Right channel NRMSE: 0.002119%
+ID   Name                                        Result
+---  ------------------------------------------  ------
+[1]  DirectHRTF test [P=(1,0,0)]                PASS
+[2]  DirectHRTF test [P=(0,1,0)]                FAIL
 
-[2] Analytical impulse response test - Reverb path
-Test result: FAIL
-Left channel NRMSE: 1.234500%
-Right channel NRMSE: 0.876100%
-Reason: Left channel NRMSE is above the allowed margin.
+Failure / error details
+-----------------------
+[2] DirectHRTF test [P=(0,1,0)]: NRMSE is above the allowed margin.
 
 Summary
 -------
@@ -349,16 +351,20 @@ TestType.ANALYTICAL
 TestType.PERCEPTUAL
 ```
 
-This means that analytical and perceptual tests can be reordered freely in `test_registry.py`. The hierarchical menu will filter them automatically by type.
+`test_target` identifies the object under test and provides the second navigation level. It is deliberately a string so a future test can target a combination such as `ISMEnvironmentModel + ListenerAmbisonicVirtualLoudspeakersModel`.
+
+This means that analytical and perceptual tests can be reordered freely in `test_registry.py`. The hierarchical menu filters them by type and then groups analytical tests by target.
 
 Analytical tests can also define reference metadata:
 
 ```python
 TestDefinition(
     id="1",
-    name="Analytical impulse response test - Direct path",
+    name="DirectHRTF test [P=(1,0,0)]",
+    description="Generates and compares a stereo impulse response.",
+    settings_file="analytical_test_1.json",
+    test_target="ListenerDirectHRTFConvolutionModel",
     test_type=TestType.ANALYTICAL,
-    settings_file="analytical_test1.json",
     generated_wav_path="Results/analytical_ir/generated_test1_ir.wav",
     reference_wav_path="Referencefiles/analytical_test1_ir_reference.wav",
     reference_metadata_path="Referencefiles/analytical_test1_ir_reference.yaml",

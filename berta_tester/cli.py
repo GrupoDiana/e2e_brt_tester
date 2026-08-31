@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 from berta_tester.app_config import APP_TITLE
-from berta_tester.batch_runner import print_analytical_batch_summary, run_all_analytical_tests
+from berta_tester.batch_runner import print_analytical_batch_summary, run_analytical_tests
 from berta_tester.reference_metadata import read_reference_metadata
 from berta_tester.test_actions import run_test_actions
 from berta_tester.test_definition import TestDefinition, TestType
-from berta_tester.test_registry import get_tests
+from berta_tester.test_registry import get_tests, group_tests_by_target
 from berta_tester.test_runner import TestSession, start_test_session
 
 
@@ -70,9 +70,44 @@ def print_test_type_menu(
             print(f"    Settings file: Settingsfiles/{test.settings_file}")
             print()
 
-    if any(test.test_type is TestType.ANALYTICAL for test in tests):
-        print("[A] Run all analytical tests")
     print("[9] Back to main menu")
+    print("[0] Exit")
+    print()
+
+
+def print_analytical_target_menu(
+    path: str,
+    groups: tuple[tuple[str, tuple[TestDefinition, ...]], ...],
+) -> None:
+    print_breadcrumb(path)
+    print("Analytical test targets:")
+    print()
+
+    for index, (target, tests) in enumerate(groups, start=1):
+        print(f"[{index}] {target} ({len(tests)} tests)")
+
+    print()
+    print("[A] Run all analytical tests")
+    print("[9] Back to main menu")
+    print("[0] Exit")
+    print()
+
+
+def print_target_tests_menu(
+    path: str,
+    target: str,
+    tests: tuple[TestDefinition, ...],
+) -> None:
+    print_breadcrumb(path)
+    print(f"Available tests for {target}:")
+    print()
+
+    for test in tests:
+        print(f"[{test.id}] {test.name}")
+
+    print()
+    print(f"[A] Run all tests for {target}")
+    print("[9] Back to analytical test targets")
     print("[0] Exit")
     print()
 
@@ -242,32 +277,87 @@ def run_session_menu(session: TestSession, path: str) -> str:
         print()
 
 
-def run_test_type_menu(test_type: TestType, menu_label: str) -> str:
-    """Show tests for one category and run selected sessions.
+def run_selected_test(test: TestDefinition, parent_path: str) -> str:
+    """Launch one test and return to the menu that selected it."""
+    session: TestSession | None = None
+    session_path = f"{parent_path} / Test {test.id}"
+    try:
+        print()
+        print_breadcrumb(session_path)
+        print(f"Selected test: {test.name}")
+        print(f"Test target: {test.test_target}")
+        session = start_test_session(test)
+        print_session_ready(session, session_path)
+        return run_session_menu(session, session_path)
+    except Exception as error:
+        if session is not None:
+            session.close()
+        print()
+        print_breadcrumb(session_path)
+        print(f"ERROR: {error}")
+        print()
+        return "menu"
 
-    Returns:
-        "menu" to go back to the main menu.
-        "exit" to terminate the tester application.
-    """
+
+def run_analytical_target_menu(menu_label: str) -> str:
+    """Navigate analytical tests by target and allow target-level batches."""
     path = f"{MAIN_MENU_PATH} / {menu_label}"
 
     while True:
-        tests = tests_by_type(test_type)
-        print_test_type_menu(path, tests)
+        tests = tests_by_type(TestType.ANALYTICAL)
+        groups = group_tests_by_target(tests)
+        print_analytical_target_menu(path, groups)
+        choice = ask_for_option("Select test target: ")
+
+        if choice == "9":
+            return "menu"
+        if choice == "0":
+            return "exit"
+        if choice.lower() == "a":
+            batch_path = f"{path} / Run all analytical tests"
+            print()
+            print_breadcrumb(batch_path)
+            result = run_analytical_tests(tests, show_progress=True)
+            print_analytical_batch_summary(result)
+            continue
+
+        try:
+            selected_index = int(choice) - 1
+            target, target_tests = groups[selected_index]
+            if selected_index < 0:
+                raise IndexError
+        except (ValueError, IndexError):
+            print("Invalid option. Please try again.")
+            print()
+            continue
+
+        next_action = run_analytical_family_menu(path, target, target_tests)
+        if next_action == "exit":
+            return "exit"
+
+
+def run_analytical_family_menu(
+    parent_path: str,
+    target: str,
+    tests: tuple[TestDefinition, ...],
+) -> str:
+    """Select or batch-run tests belonging to one analytical target."""
+    path = f"{parent_path} / {target}"
+
+    while True:
+        print_target_tests_menu(path, target, tests)
         choice = ask_for_option("Select test: ")
 
         if choice == "9":
             return "menu"
-
         if choice == "0":
             return "exit"
-
-        if choice.lower() == "a" and test_type is TestType.ANALYTICAL:
-            batch_path = f"{path} / Run all analytical tests"
+        if choice.lower() == "a":
+            batch_path = f"{path} / Run all tests"
             print()
             print_breadcrumb(batch_path)
-            batch_result = run_all_analytical_tests(tests, show_progress=True)
-            print_analytical_batch_summary(batch_result)
+            result = run_analytical_tests(tests, show_progress=True)
+            print_analytical_batch_summary(result)
             continue
 
         test = get_test_by_id_from_tests(choice, tests)
@@ -276,25 +366,34 @@ def run_test_type_menu(test_type: TestType, menu_label: str) -> str:
             print()
             continue
 
-        session: TestSession | None = None
-        session_path = f"{path} / Test {test.id}"
-        try:
-            print()
-            print_breadcrumb(session_path)
-            print(f"Selected test: {test.name}")
-            session = start_test_session(test)
-            print_session_ready(session, session_path)
-            next_action = run_session_menu(session, session_path)
-            if next_action == "exit":
-                return "exit"
-        except Exception as error:
-            if session is not None:
-                session.close()
-            print()
-            print_breadcrumb(session_path)
-            print(f"ERROR: {error}")
-            print()
+        if run_selected_test(test, path) == "exit":
+            return "exit"
+
+
+def run_test_type_menu(test_type: TestType, menu_label: str) -> str:
+    """Show tests for one category and run selected sessions."""
+    if test_type is TestType.ANALYTICAL:
+        return run_analytical_target_menu(menu_label)
+
+    path = f"{MAIN_MENU_PATH} / {menu_label}"
+    while True:
+        tests = tests_by_type(test_type)
+        print_test_type_menu(path, tests)
+        choice = ask_for_option("Select test: ")
+
+        if choice == "9":
             return "menu"
+        if choice == "0":
+            return "exit"
+
+        test = get_test_by_id_from_tests(choice, tests)
+        if test is None:
+            print("Invalid option. Please try again.")
+            print()
+            continue
+
+        if run_selected_test(test, path) == "exit":
+            return "exit"
 
 
 def run_cli() -> int:

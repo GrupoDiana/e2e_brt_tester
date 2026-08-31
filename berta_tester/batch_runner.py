@@ -111,12 +111,12 @@ def _close_session(session: TestSession, timeout_seconds: float = 5.0) -> None:
         raise close_error
 
 
-def run_all_analytical_tests(
+def run_analytical_tests(
     tests: Iterable[TestDefinition],
     *,
     show_progress: bool = True,
 ) -> AnalyticalBatchResult:
-    """Run every analytical test in an isolated BeRTA session.
+    """Run the selected analytical tests in isolated BeRTA sessions.
 
     Each test launches BeRTA with its own settings file, verifies OSC, executes
     the same analytical action used by the compact menu option, and then closes

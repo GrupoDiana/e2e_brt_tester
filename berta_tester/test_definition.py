@@ -19,6 +19,7 @@ class TestDefinition:
     name: str
     description: str
     settings_file: str
+    test_target: str
     test_type: TestType = TestType.SMOKE
     source_id: str = "source1"
     movement_steps: int = 30
