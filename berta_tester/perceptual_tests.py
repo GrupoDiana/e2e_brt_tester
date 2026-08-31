@@ -6,6 +6,8 @@ import time
 from dataclasses import dataclass
 from enum import Enum
 
+from berta_tester.console_output import print_key_values, print_section
+from berta_tester.console_style import format_status
 from berta_tester.test_runner import TestSession
 
 
@@ -105,14 +107,23 @@ def run_perceptual_localization_test(session: TestSession) -> PerceptualTestResu
     user_direction = _ask_user_direction()
     passed = user_direction is target_direction
 
-    print()
+    print_section("Test result")
     if passed:
-        print("PASS: The perceived movement matches the generated trajectory.")
+        print_key_values(
+            (
+                ("Status", format_status("PASS")),
+                ("Reason", "The perceived movement matches the generated trajectory."),
+            )
+        )
     else:
-        print("FAIL: The perceived movement does not match the generated trajectory.")
-        print(f"Expected movement: center/front to the {target_direction.label}.")
-        print(f"User answer: center/front to the {user_direction.label}.")
-    print()
+        print_key_values(
+            (
+                ("Status", format_status("FAIL")),
+                ("Reason", "The perceived movement does not match the generated trajectory."),
+                ("Expected movement", f"center/front to the {target_direction.label}"),
+                ("User answer", f"center/front to the {user_direction.label}"),
+            )
+        )
 
     return PerceptualTestResult(
         passed=passed,

@@ -54,6 +54,25 @@ def cyan(text: str) -> str:
     return _colour(text, Fore.CYAN if Fore is not None else "")
 
 
+def bright_cyan(text: str) -> str:
+    code = ""
+    if Fore is not None and Style is not None:
+        code = f"{Style.BRIGHT}{Fore.CYAN}"
+    return _colour(text, code)
+
+
+def bright_green(text: str) -> str:
+    code = ""
+    if Fore is not None and Style is not None:
+        code = f"{Style.BRIGHT}{Fore.GREEN}"
+    return _colour(text, code)
+
+
+def format_outcome(success: bool) -> str:
+    """Return a coloured OK or FAILED startup outcome."""
+    return green("OK") if success else red("FAILED")
+
+
 def format_status(status: Any) -> str:
     """Return a coloured PASS/FAIL/ERROR status.
 

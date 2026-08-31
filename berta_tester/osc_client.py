@@ -271,6 +271,7 @@ class OscClient(AbstractContextManager["OscClient"]):
         retry_wait_seconds: float,
         max_attempts: int,
         process: subprocess.Popen | None = None,
+        show_progress: bool = True,
     ) -> OscMessage:
         """Try /control/connect multiple times until BeRTA answers."""
         last_error: TimeoutError | None = None
@@ -278,10 +279,11 @@ class OscClient(AbstractContextManager["OscClient"]):
 
         for attempt in range(1, max_attempts + 1):
             self._raise_if_process_exited(process)
-            print(
-                f"OSC connect attempt {attempt}/{max_attempts}: "
-                f"waiting {retry_wait_seconds}s before /control/connect..."
-            )
+            if show_progress:
+                print(
+                    f"OSC connect attempt {attempt}/{max_attempts}: "
+                    f"waiting {retry_wait_seconds}s before /control/connect..."
+                )
 
             if retry_wait_seconds > 0:
                 time.sleep(retry_wait_seconds)
@@ -291,21 +293,24 @@ class OscClient(AbstractContextManager["OscClient"]):
                 self.tester_endpoint.ip,
                 self.tester_endpoint.port,
             )
-            print(
-                "Sent /control/connect "
-                f"{self.tester_endpoint.ip} {self.tester_endpoint.port}; waiting reply..."
-            )
+            if show_progress:
+                print(
+                    "Sent /control/connect "
+                    f"{self.tester_endpoint.ip} {self.tester_endpoint.port}; waiting reply..."
+                )
 
             try:
                 reply = self.wait_for_message(
                     "/control/connect",
                     timeout=retry_wait_seconds,
                 )
-                print(f"Received {reply}")
+                if show_progress:
+                    print(f"Received {reply}")
                 return reply
             except TimeoutError as error:
                 last_error = error
-                print("No /control/connect reply received for this attempt.")
+                if show_progress:
+                    print("No /control/connect reply received for this attempt.")
 
         raise TimeoutError(
             "Timed out waiting for /control/connect after "
@@ -318,31 +323,37 @@ class OscClient(AbstractContextManager["OscClient"]):
         connect_max_attempts: int,
         version_timeout: float,
         process: subprocess.Popen | None = None,
+        show_progress: bool = True,
     ) -> OscVerificationResult:
         """Verify BeRTA startup using /control/connect first."""
         connect_reply = self.connect_with_retries(
             retry_wait_seconds=connect_retry_wait_seconds,
             max_attempts=connect_max_attempts,
             process=process,
+            show_progress=show_progress,
         )
 
-        print("Sending /control/ping and waiting for /control/ping...")
+        if show_progress:
+            print("Sending /control/ping and waiting for /control/ping...")
         ping_reply = self.request_reply(
             "/control/ping",
             "/control/ping",
             timeout=version_timeout,
             process=process,
         )
-        print(f"Received {ping_reply}")
+        if show_progress:
+            print(f"Received {ping_reply}")
 
-        print("Sending /control/version and waiting for /control/version...")
+        if show_progress:
+            print("Sending /control/version and waiting for /control/version...")
         version_reply = self.request_reply(
             "/control/version",
             "/control/version",
             timeout=version_timeout,
             process=process,
         )
-        print(f"Received {version_reply}")
+        if show_progress:
+            print(f"Received {version_reply}")
         version = " ".join(str(argument) for argument in version_reply.arguments)
 
         if not version:

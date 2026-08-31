@@ -7,6 +7,7 @@ import time
 
 from berta_tester.audio_io import AudioReadError, read_stereo_wav_float
 from berta_tester.audio_metrics import ComparisonStatus, StereoComparisonResult, compare_stereo_audio
+from berta_tester.console_output import print_key_values, print_section
 from berta_tester.console_style import format_status
 from berta_tester.paths import project_root
 from berta_tester.test_definition import TestDefinition
@@ -199,15 +200,20 @@ def print_analytical_summary(
     session: TestSession,
     result: AnalyticalImpulseResponseResult,
 ) -> None:
-    print()
-    print("Analytical impulse response test summary")
-    print("---------------------------------------")
-    print(f"Test: {session.test.name}")
-    print(f"Connection with BeRTA: {'active' if session.is_berta_process_running() else 'not running'}")
-    print(f"Settings file: Settingsfiles/{session.test.settings_file}")
-    print(f"Generated file: {result.generated_path}")
-    print(f"Reference file: {result.reference_path}")
-    print(f"Allowed margin: {session.test.nrmse_margin_percent:.6f}%")
+    print_section("Analytical test summary")
+    print_key_values(
+        (
+            ("Test", session.test.name),
+            (
+                "Connection with BeRTA",
+                "active" if session.is_berta_process_running() else "not running",
+            ),
+            ("Settings file", f"Settingsfiles/{session.test.settings_file}"),
+            ("Generated file", result.generated_path),
+            ("Reference file", result.reference_path),
+            ("Allowed margin", f"{session.test.nrmse_margin_percent:.6f}%"),
+        )
+    )
 
     if result.action_result is not None:
         print(f"OSC action: {result.action_result.action_command}")
@@ -216,6 +222,7 @@ def print_analytical_summary(
 
     comparison = result.comparison
     if comparison is not None:
+        print_section("Audio comparison")
         print(f"Sample rate: {comparison.sample_rate} Hz")
         print(f"Generated samples: {comparison.generated_samples}")
         print(f"Reference samples: {comparison.reference_samples}")
@@ -275,17 +282,23 @@ def print_analytical_summary(
             )
             print(f"  Possible channel swap: {comparison.possible_channel_swap}")
 
-    print()
-    print(f"Final result: {format_status(result.status)}")
-    print(f"Reason: {result.reason}")
-    print()
+    print_section("Final result")
+    print_key_values(
+        (("Status", format_status(result.status)), ("Reason", result.reason))
+    )
 
 
 def print_analytical_compact_summary(result: AnalyticalImpulseResponseResult) -> None:
     """Print the compact report used by the non-verbose menu action."""
-    print(f"Test result: {format_status(result.status)}")
-    print(f"Left channel NRMSE: {_format_percent(_left_nrmse(result))}")
-    print(f"Right channel NRMSE: {_format_percent(_right_nrmse(result))}")
+    print_section("Test result")
+    print_key_values(
+        (
+            ("Status", format_status(result.status)),
+            ("Left channel NRMSE", _format_percent(_left_nrmse(result))),
+            ("Right channel NRMSE", _format_percent(_right_nrmse(result))),
+            ("Reason", result.reason),
+        )
+    )
 
 
 def execute_analytical_impulse_response_test(

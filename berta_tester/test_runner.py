@@ -128,7 +128,11 @@ def _raise_if_berta_exited(launch_result: LaunchResult) -> None:
         )
 
 
-def start_test_session(test: TestDefinition) -> TestSession:
+def start_test_session(
+    test: TestDefinition,
+    *,
+    show_osc_progress: bool = False,
+) -> TestSession:
     """Launch BeRTA, verify OSC, and keep the live session open."""
     settings_file = resolve_settings_file(test.settings_file)
     launch_result = launch_berta(settings_file)
@@ -149,6 +153,7 @@ def start_test_session(test: TestDefinition) -> TestSession:
             connect_max_attempts=connect_max_attempts,
             version_timeout=version_timeout,
             process=launch_result.process,
+            show_progress=show_osc_progress,
         )
     except Exception:
         osc_client.close()
