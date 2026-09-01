@@ -2,12 +2,16 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+from typing import Callable
 
 import numpy as np
+from scipy.signal import correlate as signal_correlate
+from scipy.signal import correlation_lags
 
 from berta_tester.audio_io import StereoAudio
 
 EPSILON_RMS = 1.0e-12
+TimingCallback = Callable[[str], None]
 
 
 class ComparisonStatus(str, Enum):
@@ -102,9 +106,19 @@ def detect_lag_samples(generated: np.ndarray, reference: np.ndarray) -> int:
     if np.linalg.norm(generated_centered) <= EPSILON_RMS or np.linalg.norm(reference_centered) <= EPSILON_RMS:
         return 0
 
-    correlation = np.correlate(generated_centered, reference_centered, mode="full")
+    correlation = signal_correlate(
+        generated_centered,
+        reference_centered,
+        mode="full",
+        method="auto",
+    )
+    lags = correlation_lags(
+        generated_centered.size,
+        reference_centered.size,
+        mode="full",
+    )
     lag_index = int(np.argmax(np.abs(correlation)))
-    return lag_index - (reference.size - 1)
+    return int(lags[lag_index])
 
 
 def aligned_vectors_for_lag(generated: np.ndarray, reference: np.ndarray, lag: int) -> tuple[np.ndarray, np.ndarray]:
@@ -155,6 +169,7 @@ def compare_stereo_audio(
     reference: StereoAudio,
     margin_percent: float,
     detect_channel_swap: bool = True,
+    timing_callback: TimingCallback | None = None,
 ) -> StereoComparisonResult:
     if margin_percent <= 0:
         return StereoComparisonResult(
@@ -219,17 +234,28 @@ def compare_stereo_audio(
     generated_common = generated.samples[:common_samples, :]
     reference_common = reference.samples[:common_samples, :]
 
+    if timing_callback is not None:
+        timing_callback("Audio comparison: left-channel metrics started")
     left = compute_channel_metrics(
         generated_common[:, 0], reference_common[:, 0], generated.sample_rate
     )
+    if timing_callback is not None:
+        timing_callback("Audio comparison: left-channel metrics completed")
+
+    if timing_callback is not None:
+        timing_callback("Audio comparison: right-channel metrics started")
     right = compute_channel_metrics(
         generated_common[:, 1], reference_common[:, 1], generated.sample_rate
     )
+    if timing_callback is not None:
+        timing_callback("Audio comparison: right-channel metrics completed")
 
     cross_left_right = None
     cross_right_left = None
     possible_channel_swap = False
     if detect_channel_swap:
+        if timing_callback is not None:
+            timing_callback("Audio comparison: cross-channel diagnostic started")
         cross_left_right = nrmse_percent(generated_common[:, 0], reference_common[:, 1])
         cross_right_left = nrmse_percent(generated_common[:, 1], reference_common[:, 0])
         if (
@@ -241,6 +267,8 @@ def compare_stereo_audio(
             correct_average = (left.nrmse_percent + right.nrmse_percent) / 2.0
             crossed_average = (cross_left_right + cross_right_left) / 2.0
             possible_channel_swap = crossed_average < correct_average * 0.5
+        if timing_callback is not None:
+            timing_callback("Audio comparison: cross-channel diagnostic completed")
 
     reasons: list[str] = []
     if not strict_length_match:

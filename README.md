@@ -381,6 +381,37 @@ $env:BERTA_OSC_CONNECT_MAX_ATTEMPTS="3"
 python main.py
 ```
 
+## Execution timing diagnostics
+
+Detailed timing traces are disabled by default. Enable them when diagnosing
+delays between BeRTA startup, IR recording, WAV processing, audio comparison,
+and session shutdown.
+
+On Windows PowerShell:
+
+```powershell
+$env:BERTA_TESTER_TIMINGS="1"
+python main.py
+```
+
+On macOS or Linux:
+
+```bash
+BERTA_TESTER_TIMINGS=1 python main.py
+```
+
+Each timing line shows the elapsed time since the test session started and the
+duration of the most recently completed stage:
+
+```text
+[TIMING +   3.215s | stage    1.008s] /control/actionResult received
+[TIMING +   3.317s | stage    0.102s] Generated WAV ready: ...
+[TIMING +   3.329s | stage    0.006s] Reference WAV read completed: ...
+[TIMING +   3.341s | stage    0.012s] Audio comparison completed
+```
+
+Unset the variable, or set it to `0`, to restore the normal compact output.
+
 ## Test definitions
 
 Tests are declared in:
@@ -653,6 +684,21 @@ The current unit tests cover the audio comparison and validation logic, includin
 - silent reference channel;
 - invalid mono WAV;
 - sample-rate mismatch.
+- direct NumPy versus SciPy FFT correlation equivalence;
+- positive, zero, and negative lag preservation;
+- FFT peak handling for ambiguous signals;
+- correlation using samples from a real reference WAV;
+- automatic FFT selection for one-second audio.
+
+Lag detection uses `scipy.signal.correlate(..., method="auto")`. SciPy selects
+the direct or FFT implementation according to the input size while preserving
+the full linear cross-correlation result.
+
+The direct-versus-automatic performance comparison can be repeated with:
+
+```bash
+python -m scripts.benchmark_correlation
+```
 
 ## Notes on Windows paths
 

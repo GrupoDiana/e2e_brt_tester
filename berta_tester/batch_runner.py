@@ -12,6 +12,7 @@ from berta_tester.audio_metrics import ComparisonStatus
 from berta_tester.console_style import format_status, format_status_count
 from berta_tester.test_definition import TestDefinition
 from berta_tester.test_runner import TestSession, start_test_session
+from berta_tester.timing_trace import TimingTrace
 
 
 @dataclass(frozen=True)
@@ -130,9 +131,11 @@ def run_analytical_tests(
             print()
             print(f"Running analytical test {index}: [{test.id}] {test.name}")
 
+        trace = TimingTrace()
+        trace.mark(f"Batch item started: [{test.id}] {test.name}")
         session: TestSession | None = None
         try:
-            session = start_test_session(test)
+            session = start_test_session(test, timing_trace=trace)
             result = execute_analytical_impulse_response_test(
                 session,
                 show_progress=False,
@@ -153,6 +156,7 @@ def run_analytical_tests(
                             right_nrmse_percent=entry.right_nrmse_percent,
                             reason=f"Test completed, but closing the BeRTA session failed: {close_error}",
                         )
+        trace.mark(f"Batch item completed: [{test.id}] {test.name}")
 
         entries.append(entry)
 

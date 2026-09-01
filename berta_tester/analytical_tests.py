@@ -308,6 +308,8 @@ def execute_analytical_impulse_response_test(
 ) -> AnalyticalImpulseResponseResult:
     """Execute the analytical IR test and return its result without printing a report."""
     test = session.test
+    trace = session.timing_trace
+    trace.mark(f"Analytical action started: [{test.id}] {test.name}")
     generated_path = _resolve_project_path(test.generated_wav_path)
     reference_path = _resolve_project_path(test.reference_wav_path)
 
@@ -328,6 +330,7 @@ def execute_analytical_impulse_response_test(
         print(test.description)
         print("Checking active OSC connection with BeRTA using /control/ping...")
 
+    trace.mark("OSC ping started")
     try:
         session.ping(timeout=test.osc_action_timeout_seconds)
     except Exception as error:
@@ -339,6 +342,7 @@ def execute_analytical_impulse_response_test(
             generated_path=generated_path,
             reference_path=reference_path,
         )
+    trace.mark("OSC ping completed")
 
     generated_path.parent.mkdir(parents=True, exist_ok=True)
     if generated_path.exists():
@@ -362,6 +366,7 @@ def execute_analytical_impulse_response_test(
         float(y),
         float(z),
     )
+    trace.mark("/recordIR sent; waiting for /control/actionResult")
 
     try:
         action_result = _wait_for_action_result(
@@ -379,6 +384,7 @@ def execute_analytical_impulse_response_test(
             generated_path=generated_path,
             reference_path=reference_path,
         )
+    trace.mark("/control/actionResult received")
 
     if not action_result.success:
         return _make_result(
@@ -400,6 +406,7 @@ def execute_analytical_impulse_response_test(
             reference_path=reference_path,
         )
 
+    trace.mark("Generated WAV readiness wait started")
     try:
         _wait_for_file_ready(generated_path)
     except Exception as error:
@@ -411,10 +418,24 @@ def execute_analytical_impulse_response_test(
             generated_path=generated_path,
             reference_path=reference_path,
         )
+    trace.mark(
+        f"Generated WAV ready: {generated_path} "
+        f"({generated_path.stat().st_size} bytes)"
+    )
 
     try:
+        trace.mark("Generated WAV read started")
         generated_audio = read_stereo_wav_float(generated_path)
+        trace.mark(
+            "Generated WAV read completed: "
+            f"{generated_audio.num_samples} samples at {generated_audio.sample_rate} Hz"
+        )
+        trace.mark("Reference WAV read started")
         reference_audio = read_stereo_wav_float(reference_path)
+        trace.mark(
+            "Reference WAV read completed: "
+            f"{reference_audio.num_samples} samples at {reference_audio.sample_rate} Hz"
+        )
     except AudioReadError as error:
         return _make_result(
             status=ComparisonStatus.ERROR,
@@ -425,12 +446,15 @@ def execute_analytical_impulse_response_test(
             reference_path=reference_path,
         )
 
+    trace.mark("Audio comparison started")
     comparison = compare_stereo_audio(
         generated_audio,
         reference_audio,
         margin_percent=test.nrmse_margin_percent,
         detect_channel_swap=test.detect_channel_swap,
+        timing_callback=trace.mark,
     )
+    trace.mark("Audio comparison completed")
     return _make_result(
         status=comparison.status,
         action_result=action_result,

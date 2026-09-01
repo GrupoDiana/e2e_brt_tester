@@ -15,6 +15,7 @@ DEFAULT_MACOS_BERTA_EXECUTABLE = (
 )
 
 BERTA_EXECUTABLE_ENV_VAR = "BERTA_RENDERER_EXECUTABLE"
+TIMINGS_ENV_VAR = "BERTA_TESTER_TIMINGS"
 
 # OSC defaults. Override these with environment variables if your BeRTA settings
 # file uses different ports.

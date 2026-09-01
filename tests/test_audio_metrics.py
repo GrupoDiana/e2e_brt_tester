@@ -140,3 +140,29 @@ def test_audio_reader_rejects_sample_rate_mismatch_in_comparison(tmp_path: Path)
 
     assert result.status is ComparisonStatus.ERROR
     assert "Sample rates do not match" in result.reason
+
+
+def test_audio_comparison_reports_timing_stages(tmp_path: Path) -> None:
+    signal = stereo(impulse(), impulse(index=12, amplitude=0.5))
+    generated_path = tmp_path / "generated.wav"
+    reference_path = tmp_path / "reference.wav"
+    write_wav(generated_path, signal)
+    write_wav(reference_path, signal)
+    timing_messages: list[str] = []
+
+    compare_stereo_audio(
+        read_stereo_wav_float(generated_path),
+        read_stereo_wav_float(reference_path),
+        margin_percent=1.0,
+        detect_channel_swap=True,
+        timing_callback=timing_messages.append,
+    )
+
+    assert timing_messages == [
+        "Audio comparison: left-channel metrics started",
+        "Audio comparison: left-channel metrics completed",
+        "Audio comparison: right-channel metrics started",
+        "Audio comparison: right-channel metrics completed",
+        "Audio comparison: cross-channel diagnostic started",
+        "Audio comparison: cross-channel diagnostic completed",
+    ]

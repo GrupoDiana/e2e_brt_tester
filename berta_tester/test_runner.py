@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from subprocess import TimeoutExpired
 
 from berta_tester.berta_launcher import LaunchResult, launch_berta
@@ -15,6 +15,7 @@ from berta_tester.osc_client import (
 )
 from berta_tester.paths import resolve_settings_file
 from berta_tester.test_definition import TestDefinition
+from berta_tester.timing_trace import TimingTrace
 
 
 @dataclass(frozen=True)
@@ -37,6 +38,7 @@ class TestSession:
     launch_result: LaunchResult
     osc_client: OscClient
     osc_verification: OscVerificationResult
+    timing_trace: TimingTrace = field(default_factory=TimingTrace)
     closed: bool = False
 
     def close(
@@ -58,16 +60,23 @@ class TestSession:
         if self.closed:
             return
 
+        self.timing_trace.mark("Session close started")
         try:
             if disconnect:
+                self.timing_trace.mark("OSC disconnect started")
                 self.osc_client.disconnect_safely()
+                self.timing_trace.mark("OSC disconnect completed")
         finally:
             self.osc_client.close()
+            self.timing_trace.mark("OSC listener closed")
 
         if close_berta_process:
+            self.timing_trace.mark("BeRTA process shutdown started")
             self.close_berta_process(terminate_timeout_seconds)
+            self.timing_trace.mark("BeRTA process shutdown completed")
 
         self.closed = True
+        self.timing_trace.mark("Session close completed")
 
     def close_berta_process(self, timeout_seconds: float = 5.0) -> None:
         """Terminate the BeRTA Renderer process if it is still running."""
@@ -132,10 +141,15 @@ def start_test_session(
     test: TestDefinition,
     *,
     show_osc_progress: bool = False,
+    timing_trace: TimingTrace | None = None,
 ) -> TestSession:
     """Launch BeRTA, verify OSC, and keep the live session open."""
+    trace = timing_trace if timing_trace is not None else TimingTrace()
+    trace.mark(f"Test session started: [{test.id}] {test.name}")
     settings_file = resolve_settings_file(test.settings_file)
+    trace.mark(f"Launching BeRTA with settings: {settings_file}")
     launch_result = launch_berta(settings_file)
+    trace.mark("BeRTA process launched")
 
     berta_endpoint = get_berta_endpoint_from_env()
     tester_endpoint = get_tester_endpoint_from_env()
@@ -148,6 +162,7 @@ def start_test_session(
     osc_client = OscClient(berta_endpoint, tester_endpoint)
     try:
         osc_client.start()
+        trace.mark("OSC startup verification started")
         osc_verification = osc_client.verify_berta_is_ready(
             connect_retry_wait_seconds=connect_retry_wait_seconds,
             connect_max_attempts=connect_max_attempts,
@@ -155,8 +170,10 @@ def start_test_session(
             process=launch_result.process,
             show_progress=show_osc_progress,
         )
+        trace.mark("OSC startup verification completed")
     except Exception:
         osc_client.close()
+        trace.mark("OSC startup verification failed")
         raise
 
     return TestSession(
@@ -164,6 +181,7 @@ def start_test_session(
         launch_result=launch_result,
         osc_client=osc_client,
         osc_verification=osc_verification,
+        timing_trace=trace,
     )
 
 
