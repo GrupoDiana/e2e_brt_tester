@@ -118,14 +118,38 @@ Analytical test targets:
 
 Selecting a target opens a compact, one-line list of the tests in that family. That menu also provides `[A] Run all tests for <target>`. The top-level `[A] Run all analytical tests` option still launches every analytical test sequentially.
 
+Menus use a consistent colour scheme: navigation paths and menu titles are cyan, execution actions are green, back or disconnect actions are yellow, and exit actions are red.
+
+Menus that list tests include `[C] Show test name codes`. At the analytical target level it displays the complete legend; inside a target it displays only the codes used by that family.
+
 After selecting an individual test, BeRTA Renderer is launched and verified through OSC. Once the connection is ready, the live session menu is shown:
 
 ```text
----------------------------------------------------
- Path: Main Menu / Analytical tests / Test 1 
----------------------------------------------------
+--------------------------------------------------------------------------------
+ Path: Main Menu / Analytical tests / ListenerDirectHRTFConvolutionModel / Test 1
+--------------------------------------------------------------------------------
 
-Test session actions:
+TEST DEFINITION
+---------------
+ID     : 1
+Name   : DirectHRTF test [P=(1,0,0)]
+Target : ListenerDirectHRTFConvolutionModel
+Type   : analytical
+
+ANALYTICAL CONFIGURATION
+------------------------
+IR position        : (1.0, 0.0, 0.0)
+IR duration        : 1 s
+NRMSE margin       : 1 %
+
+BERTA STARTUP
+-------------
+Status           : OK
+Version          : BeRTA-Renderer v3.13.0
+OSC verification : OK
+
+TEST SESSION ACTIONS
+--------------------
 [1] Show session status
 [2] Send /control/ping
 [3] Request /control/version
@@ -135,6 +159,29 @@ Test session actions:
 [9] Disconnect and return to test menu
 [0] Disconnect and exit
 ```
+
+The breadcrumb is printed once when entering the session. OSC connect, ping, and version messages used during startup verification are hidden in the normal interface; only the final startup status and detected BeRTA version are shown.
+
+### Test name code legend
+
+The `[C]` option explains the compact codes used in analytical test names:
+
+```text
+P     Impulse position
+CARD  Source position relative to the cardioid
+INT   Interpolation
+ATT   Distance attenuation
+PD    Propagation delay
+O     ISM order
+AO    Ambisonic order
+D     Distance parameter
+SD    Source distance
+BS    Buffer size
+ABS   Absorption coefficient
+NF    Near field
+```
+
+After showing the legend, the application waits for Enter before returning to the current menu.
 
 ### Session action modes
 

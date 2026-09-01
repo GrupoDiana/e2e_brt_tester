@@ -4,12 +4,29 @@ from pathlib import Path
 
 from berta_tester.app_config import APP_TITLE
 from berta_tester.batch_runner import print_analytical_batch_summary, run_analytical_tests
-from berta_tester.console_output import print_indented_text, print_key_values, print_section
-from berta_tester.console_style import bright_green, cyan, format_outcome, red
+from berta_tester.console_output import (
+    print_indented_text,
+    print_key_values,
+    print_menu_title,
+    print_section,
+)
+from berta_tester.console_style import (
+    bright_cyan,
+    bright_green,
+    cyan,
+    format_outcome,
+    red,
+    yellow,
+)
 from berta_tester.paths import project_root
 from berta_tester.reference_metadata import read_reference_metadata, resolve_reference_metadata_path
 from berta_tester.test_actions import run_test_actions
 from berta_tester.test_definition import TestDefinition, TestType
+from berta_tester.test_name_codes import (
+    COMMON_CODE_VALUES,
+    TARGET_EXAMPLES,
+    codes_for_target,
+)
 from berta_tester.test_registry import get_tests, group_tests_by_target
 from berta_tester.test_runner import TestSession, start_test_session
 
@@ -20,7 +37,7 @@ PERCEPTUAL_MENU_LABEL = "Perceptual tests"
 
 
 def print_header() -> None:
-    print(APP_TITLE)
+    print(bright_cyan(APP_TITLE))
     print()
 
 
@@ -28,17 +45,18 @@ def print_breadcrumb(path: str) -> None:
     """Print the current navigation path as a clearly separated block."""
     text = f" Path: {path} "
     separator = "-" * max(40, len(text))
-    print(separator)
-    print(text)
-    print(separator)
+    print(bright_cyan(separator))
+    print(bright_cyan(text))
+    print(bright_cyan(separator))
     print()
 
 
 def print_main_menu() -> None:
     print_breadcrumb(MAIN_MENU_PATH)
+    print_menu_title("Main menu")
     print("[1] Analytical tests")
     print("[2] Perceptual tests")
-    print("[0] Exit")
+    print(red("[0] Exit"))
     print()
 
 
@@ -62,8 +80,7 @@ def print_test_type_menu(
     tests: tuple[TestDefinition, ...],
 ) -> None:
     print_breadcrumb(path)
-    print("Available tests:")
-    print()
+    print_menu_title("Available tests")
 
     if not tests:
         print("No tests are currently defined in this category.")
@@ -75,8 +92,9 @@ def print_test_type_menu(
             print(f"    Settings file: Settingsfiles/{test.settings_file}")
             print()
 
-    print("[9] Back to main menu")
-    print("[0] Exit")
+    print(cyan("[C] Show test name codes"))
+    print(yellow("[9] Back to main menu"))
+    print(red("[0] Exit"))
     print()
 
 
@@ -85,16 +103,16 @@ def print_analytical_target_menu(
     groups: tuple[tuple[str, tuple[TestDefinition, ...]], ...],
 ) -> None:
     print_breadcrumb(path)
-    print("Analytical test targets:")
-    print()
+    print_menu_title("Analytical test targets")
 
     for index, (target, tests) in enumerate(groups, start=1):
         print(f"[{index}] {target} ({len(tests)} tests)")
 
     print()
-    print("[A] Run all analytical tests")
-    print("[9] Back to main menu")
-    print("[0] Exit")
+    print(cyan("[C] Show test name codes"))
+    print(bright_green("[A] Run all analytical tests"))
+    print(yellow("[9] Back to main menu"))
+    print(red("[0] Exit"))
     print()
 
 
@@ -104,21 +122,41 @@ def print_target_tests_menu(
     tests: tuple[TestDefinition, ...],
 ) -> None:
     print_breadcrumb(path)
-    print(f"Available tests for {target}:")
-    print()
+    print_menu_title(f"Available tests for {target}")
 
     for test in tests:
         print(f"[{test.id}] {test.name}")
 
     print()
-    print(f"[A] Run all tests for {target}")
-    print("[9] Back to analytical test targets")
-    print("[0] Exit")
+    print(cyan("[C] Show test name codes"))
+    print(bright_green(f"[A] Run all tests for {target}"))
+    print(yellow("[9] Back to analytical test targets"))
+    print(red("[0] Exit"))
     print()
 
 
 def ask_for_option(prompt: str = "Select option: ") -> str:
     return input(prompt).strip()
+
+
+def show_test_name_codes(target: str | None = None) -> None:
+    """Show the complete or target-specific compact-name legend."""
+    title = "Test name codes" if target is None else f"Test name codes - {target}"
+    print_section(title)
+    codes = codes_for_target(target)
+    print_key_values((item.code, item.meaning) for item in codes)
+
+    print_section("Common values")
+    print_key_values(COMMON_CODE_VALUES)
+
+    print_section("Examples")
+    if target is not None:
+        print(TARGET_EXAMPLES.get(target, "No example is currently defined."))
+    else:
+        print_key_values(TARGET_EXAMPLES.items())
+
+    print()
+    ask_for_option("Press Enter to return to the menu...")
 
 
 def _project_path(path_text: str) -> Path:
@@ -208,9 +246,9 @@ def print_test_actions_menu() -> None:
     print("[3] Request /control/version")
     print(cyan("[4] Run test actions verbose"))
     print(bright_green("[5] Run test actions"))
-    print("[6] Show reference metadata")
-    print("[9] Disconnect and return to test menu")
-    print("[0] Disconnect and exit")
+    print(cyan("[6] Show reference metadata"))
+    print(yellow("[9] Disconnect and return to test menu"))
+    print(red("[0] Disconnect and exit"))
     print()
 
 
@@ -371,6 +409,9 @@ def run_analytical_target_menu(menu_label: str) -> str:
             return "menu"
         if choice == "0":
             return "exit"
+        if choice.lower() == "c":
+            show_test_name_codes()
+            continue
         if choice.lower() == "a":
             batch_path = f"{path} / Run all analytical tests"
             print()
@@ -385,7 +426,7 @@ def run_analytical_target_menu(menu_label: str) -> str:
             if selected_index < 0:
                 raise IndexError
         except (ValueError, IndexError):
-            print("Invalid option. Please try again.")
+            print(red("Invalid option. Please try again."))
             print()
             continue
 
@@ -410,6 +451,9 @@ def run_analytical_family_menu(
             return "menu"
         if choice == "0":
             return "exit"
+        if choice.lower() == "c":
+            show_test_name_codes(target)
+            continue
         if choice.lower() == "a":
             batch_path = f"{path} / Run all tests"
             print()
@@ -420,7 +464,7 @@ def run_analytical_family_menu(
 
         test = get_test_by_id_from_tests(choice, tests)
         if test is None:
-            print("Invalid option. Please try again.")
+            print(red("Invalid option. Please try again."))
             print()
             continue
 
@@ -443,10 +487,13 @@ def run_test_type_menu(test_type: TestType, menu_label: str) -> str:
             return "menu"
         if choice == "0":
             return "exit"
+        if choice.lower() == "c":
+            show_test_name_codes()
+            continue
 
         test = get_test_by_id_from_tests(choice, tests)
         if test is None:
-            print("Invalid option. Please try again.")
+            print(red("Invalid option. Please try again."))
             print()
             continue
 
@@ -479,5 +526,5 @@ def run_cli() -> int:
                 return 0
             continue
 
-        print("Invalid option. Please try again.")
+        print(red("Invalid option. Please try again."))
         print()

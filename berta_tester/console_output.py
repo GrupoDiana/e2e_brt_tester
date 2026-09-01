@@ -14,6 +14,12 @@ def print_section(title: str) -> None:
     print("-" * len(normalized))
 
 
+def print_menu_title(title: str) -> None:
+    """Print a menu heading using the shared navigation colour."""
+    print(bright_cyan(title))
+    print()
+
+
 def print_key_values(rows: Iterable[tuple[str, Any]]) -> None:
     """Print aligned label/value rows, preserving multiline values."""
     prepared = [(str(label), str(value)) for label, value in rows]

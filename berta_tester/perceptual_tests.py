@@ -6,8 +6,8 @@ import time
 from dataclasses import dataclass
 from enum import Enum
 
-from berta_tester.console_output import print_key_values, print_section
-from berta_tester.console_style import format_status
+from berta_tester.console_output import print_key_values, print_menu_title, print_section
+from berta_tester.console_style import format_status, red
 from berta_tester.test_runner import TestSession
 
 
@@ -72,7 +72,7 @@ def _run_circular_source_movement(
 def _ask_user_direction() -> EarDirection:
     while True:
         print()
-        print("What movement did you hear?")
+        print_menu_title("What movement did you hear?")
         print("[1] From the center/front to the LEFT ear (0, 1)")
         print("[2] From the center/front to the RIGHT ear (0, -1)")
         answer = input("Select answer: ").strip().lower()
@@ -82,7 +82,7 @@ def _ask_user_direction() -> EarDirection:
         if answer in {"2", "right", "r", "derecha"}:
             return EarDirection.RIGHT
 
-        print("Invalid answer. Please try again.")
+        print(red("Invalid answer. Please try again."))
 
 
 def run_perceptual_localization_test(session: TestSession) -> PerceptualTestResult:
