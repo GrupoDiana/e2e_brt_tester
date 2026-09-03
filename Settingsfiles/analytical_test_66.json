@@ -5,8 +5,6 @@
 		"BufferFrames": 4,
 		"OSCListenPort": 10017,
 		"ExtrapolationMethod": "NearestPoint",
-		"DefaultInputAudioInterface": -1,
-		"DefaultOutputAudioInterface": -1,
 		"LogFile": true,
 		"LogFilePath": "",
 
@@ -22,33 +20,20 @@
 		"Listeners": [ "DefaultListener" ],
 		"ListenerModels": [
 			{
-				"ID": "DirectPath",
-				"Model": "ListenerDirectHRTFConvolutionModel"
+				"ID": "ReverbPath",
+				"Model": "ListenerDirectBRIRConvolutionModel"
 			}
 		],
-		"EnvironmentModels": [
-			{
-				"ID": "FreeField",
-				"Model": "FreeFieldEnvironmentModel"
-			}
-		],
-		"BilateralFilters": [
-		],
-
-		"ConnectSourcesTo": [ "FreeField" ],
-		"Model2ModelConnections": [
-			{
-				"OriginID": "FreeField",
-				"DestinationID": "DirectPath"
-			}
-		],
+		"EnvironmentModels": [],
+		"BilateralFilters": [],
+		"ConnectSourcesTo": [ "ReverbPath" ],
+		"Model2ModelConnections": [],
 		"ConnectToListener": [
 			{
-				"ModelID": "DirectPath",
-				"ListenerID": "DefaultListener"
+				"ListenerID": "DefaultListener",
+				"ModelID": "ReverbPath"
 			}
 		],
-
 		"_comment_Listeners": "Defines the physical listener(s), by ID, for which sound will be rendered. Currently the GUI only supports one listener, but in future versions of the application it will be fully functional.",
 		"_comment_ListenerModel": "All the listener models to be instantiated for rendering are defined here. They are defined by an ID and by the type of model. The available model types are: ListenerDirectHRTFConvolutionModel, ListenerDirectBRIRConvolutionModel, ListenerAmbisonicVirtualLoudspeakersModel, ListenerAmbisonicReverberantVirtualLoudspeakersModel. For more information please refer to the documentation.",
 		"_comment_EnvironmentModels": "All environment models that are instantiated for rendering are defined here. They are defined by an ID and by the type of model. The available environment models types are: SDNEnvironmentModel and FreeFieldEnvironmentModel",
@@ -65,12 +50,19 @@
 				"spatialResolution": 5
 			}
 		],
-		"_comment_HRTFs": "List of HRTFs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the HRTF. If one has the ID DefaultHRTF it will be assigned to the listener by default. Filename is the name and realtive path to the sofa file. It must be stored in the folder bin/data (which can be found inside the installation folder). resamplingStep is the Step for the HRTF offline interpolation process (in degrees)",
+		"_comment_HRTFs": "List of HRTFs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the HRTF. If one has the ID DefaultHRTF it will be assigned to the listener by default. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder). spatialResolution is the Step for the HRTF offline interpolation process (in degrees).",
 
 		"BRIRs": [
-
+			{
+				"ID": "BRIR1",
+				"fileName": "resources//BRIR//3DTI_BRIR_medium_48000Hz.sofa",
+				"fadeInBegin": 0.0,
+				"riseTime": 0.0,
+				"fadeOutCutoff": 1.0,
+				"fallTime": 0.1
+			}
 		],
-		"_comment_BRIRs": "List of BRIRs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the HRTF. If one has the ID DefaultHRTF it will be assigned to the listener by default. Filename is the name and realtive path to the sofa file. It must be stored in the folder bin/data (which can be found inside the installation folder). spatialResolution is the Step for the BRIR offline interpolation process (in degrees). The loaded BRIR can be windowed, using a fade-in and fade-out mechanism. fadeInBegin indicates the midpoint (50%) of the rising slope of the window, in seconds. risetime indicates the rising time, also in seconds. fadeOutCutoff indicates the midpoint (50%) of the falling slope of the window. fallTime indicates the falling time, all in seconds.",
+		"_comment_BRIRs": "List of BRIRs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the HRTF. If one has the ID DefaultHRTF it will be assigned to the listener by default. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder). spatialResolution is the Step for the BRIR offline interpolation process (in degrees). The loaded BRIR can be windowed, using a fade-in and fade-out mechanism. fadeInBegin indicates the midpoint (50%) of the rising slope of the window, in seconds. risetime indicates the rising time, also in seconds. fadeOutCutoff indicates the midpoint (50%) of the falling slope of the window. fallTime indicates the falling time, all in seconds.",
 
 		"Filters": [
 			{
@@ -80,39 +72,33 @@
 		],
 		"_comment_Filters": "List of filter coefficients to be loaded when the application starts. SOS filter coefficients can be loaded for IIR filters, or impulse response for FIR filters. Leave blank ([]) if you do not wish to load any. The ID is used as a unique identifier for the filter coefficients. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder).",
 
-		"Directivities": [
+		"DirectivityTFs": [
 
 		],
-		"_comment_Directivities": "List of Directivities to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the DIrectivityTF. The Directivity must be assigned to a soundsource using the ID. Filename is the name and realtive path to the sofa file. It must be stored in the folder bin/data (which can be found inside the installation folder). resamplingStep is the Step for the Directivity offline interpolation process (in degrees)",
+		"_comment_DirectivityTFs": "List of DirectivityTfs to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the DIrectivityTF. The Directivity must be assigned to a soundsource using the ID. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder). resamplingStep is the Step for the Directivity offline interpolation process (in degrees)",
 
 		"Rooms": [
-		]
+		],
+		"_comment_Rooms": " List of room definitions to load into the application at startup. Leave it blank ([]) if you do not want to load any rooms. These definitions can be made: (1) using the length, width, and height if you want to define a shoebox-shaped room. (2) By loading OBJ files if you want an arbitrary room shape.  The ID is used as a unique identifier for the filter coefficients. The file name is the name and path to the OBJ file. If a relative path is used, the file must be stored in the bin/data folder (located inside the installation folder)."
 	},
 	"SoundSources": [
-
+		{
+			"ID": "SoundSource1",
+			"fileName": "resources//MusArch_Sample_48kHz_Anechoic_FemaleSpeech.wav",
+			"sourceModel": "OmnidirectionalModel"
+		}
 	],
 	"_comment_SoundSources": "List of sound sources that will be loaded when the application starts. The full name of the file including its path and the source model to be used for rendering must be specified. The available source model options are OmnidirectionalModel or DirectivityModel. Leave it blank if you don't want to load any of them automatically, they can be loaded later by OSC.",
 	"SceneConfiguration": [
 		{
-			"command": "/listener/setHRTF",
-			"parameters": [ "DefaultListener", "HRTF1" ]
+			"command": "/listener/setBRIR",
+			"parameters": [ "DefaultListener", "BRIR1" ]
 		},
 		{
-			"command": "/listener/setSOSFilters",
-			"parameters": [ "DefaultListener", "DefaultNFFilters" ]
-		},
-		{
-			"command": "/enableModel",
-			"parameters": [ "DirectPath", "false" ]
-		},
-		{
-			"command": "/environment/enableDistanceAttenuation",
-			"parameters": [ "FreeField", "true" ]
-		},
-		{
-			"command": "/environment/setDistanceAttenuationFactor",
-			"parameters": [ "FreeField", -7 ]
+			"command": "/listener/enableInterpolation",
+			"parameters": [ "DefaultListener", "false" ]
 		}
+
 	],
 	"_comment_SceneConfiguration": "In this section you can load configuration parameters, following the OSC format."
 }

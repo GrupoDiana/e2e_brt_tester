@@ -1,0 +1,50 @@
+reference_id: analytical_test_74.1_reference
+wav_file: analytical_test_74.1_reference.wav
+
+software:
+  brt_version: "3.0.7"
+  berta_renderer_version: "3.13.0"
+
+audio:
+  sample_rate: 48000
+  frame_size: 512
+  duration_seconds: 1.0
+
+recording:
+  command: "/recordIR"
+  type: "wav"
+  period_samples: 0
+  delay_samples: 0
+  impulse_position:
+    x: 0.75
+    y: 0.43
+    z: 0.5
+
+models:
+  
+  - id: ReverbPathPath
+    type: ListenerDirectBRIRConvolutionModel
+    enabled: true
+    parameters:
+      spatialization: false
+      gain: 0.00
+      interpolation: false
+      
+
+resources:
+  hrtf:
+    id: HRTF1
+    file: "resources//HRTF//3DTI_HRTF_SADIE_II_D2_256s_48000Hz_resampled5.sofa"
+    spatial_resolution: 5
+  filter:
+    id: DefaultNFFilters
+    file: "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa" 
+  brir:
+    id: BRIR1
+    file: "resources//BRIR//3DTI_BRIR_medium_48000Hz.sofa"
+    fadeInBegin: 0.0
+    riseTime: 0.0
+    fadeOutCutoff: 1.0
+    fallTime: 0.1
+
+notes: >

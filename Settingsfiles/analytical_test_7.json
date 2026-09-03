@@ -81,7 +81,7 @@
 		"_comment_Filters": "List of filter coefficients to be loaded when the application starts. SOS filter coefficients can be loaded for IIR filters, or impulse response for FIR filters. Leave blank ([]) if you do not wish to load any. The ID is used as a unique identifier for the filter coefficients. fileName is the name and path to the SOFA file. If a relative path is used, the file must be stored in the bin/data folder (located within the installation folder).",
 
 		"Directivities": [
-			
+
 		],
 		"_comment_Directivities": "List of Directivities to be loaded when the application starts. Leave blank ([]) if you do not want to load any. ID is used as a unique identifier for the DIrectivityTF. The Directivity must be assigned to a soundsource using the ID. Filename is the name and realtive path to the sofa file. It must be stored in the folder bin/data (which can be found inside the installation folder). resamplingStep is the Step for the Directivity offline interpolation process (in degrees)",
 
@@ -89,7 +89,7 @@
 		]
 	},
 	"SoundSources": [
-	
+
 	],
 	"_comment_SoundSources": "List of sound sources that will be loaded when the application starts. The full name of the file including its path and the source model to be used for rendering must be specified. The available source model options are OmnidirectionalModel or DirectivityModel. Leave it blank if you don't want to load any of them automatically, they can be loaded later by OSC.",
 	"SceneConfiguration": [
@@ -110,8 +110,8 @@
 			"parameters": [ "FreeField", "true" ]
 		},
 		{
-			"command": "/environment/setDistanceAttenuation",
-			"parameters": [ "FreeField", 6 ]
+			"command": "/environment/setDistanceAttenuationFactor",
+			"parameters": [ "FreeField", -6 ]
 		}
 	],
 	"_comment_SceneConfiguration": "In this section you can load configuration parameters, following the OSC format."

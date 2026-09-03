@@ -22,6 +22,9 @@ TEST_NAME_CODES: tuple[TestNameCode, ...] = (
     TestNameCode("BS", "Buffer size"),
     TestNameCode("ABS", "Absorption coefficient"),
     TestNameCode("NF", "Near field"),
+    TestNameCode("FI", "Fade In"),
+    TestNameCode("FO", "Fade Out"),
+    TestNameCode("SP", "Spatialization")
 )
 
 
@@ -32,6 +35,7 @@ TARGET_CODE_NAMES: dict[str, tuple[str, ...]] = {
     "ISMEnvironmentModel": ("O", "D", "SD", "BS", "ABS"),
     "SDNEnvironmentModel": ("SD", "BS", "ABS"),
     "ListenerAmbisonicVirtualLoudspeakersModel": ("AO", "NF", "D", "BS"),
+    "ListenerDirectBRIRConvolutionModel": ("SP", "INT", "FI", "FO")
 }
 
 
@@ -46,6 +50,9 @@ TARGET_EXAMPLES: dict[str, str] = {
     "ListenerAmbisonicVirtualLoudspeakersModel": (
         "AmbisonicVLS test [AO=3 NF=OFF D=10m BS=1024]"
     ),
+    "ListenerDirectHRTFConvolutionModel": (
+        "DirectBRIR test [SP=ON INT=ON FI=ON FO=ON]"
+    )
 }
 
 
