@@ -3773,32 +3773,6 @@ TESTS: tuple[TestDefinition, ...] = (
         detect_channel_swap=True,
     ),
     TestDefinition(
-        id="64.1",
-        name='DirectBRIR test [SP=ON INT=OFF FI=ON FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Spatialization: ON\n"
-            "\t-Interpolation: OFF\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_64.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_64.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_64.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
         id="65",
         name='DirectBRIR test [SP=ON INT=OFF FI=ON FO=OFF]',
         description=(
@@ -3821,32 +3795,6 @@ TESTS: tuple[TestDefinition, ...] = (
         ir_period_samples=0,
         ir_delay_samples=0,
         ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="65.1",
-        name='DirectBRIR test [SP=ON INT=OFF FI=ON FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Spatialization: ON\n"
-            "\t-Interpolation: OFF\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_65.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_65.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_65.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
@@ -3877,32 +3825,6 @@ TESTS: tuple[TestDefinition, ...] = (
         detect_channel_swap=True,
     ),
     TestDefinition(
-        id="66.1",
-        name='DirectBRIR test [SP=ON INT=OFF FI=OFF FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Spatialization: ON\n"
-            "\t-Interpolation: OFF\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_66.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_66.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_66.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
         id="67",
         name='DirectBRIR test [SP=ON INT=OFF FI=OFF FO=OFF]',
         description=(
@@ -3928,46 +3850,20 @@ TESTS: tuple[TestDefinition, ...] = (
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
-    TestDefinition(
-        id="67.1",
-        name='DirectBRIR test [SP=ON INT=OFF FI=OFF FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Spatialization: ON\n"
-            "\t-Interpolation: OFF\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_67.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_67.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_67.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
+    
     TestDefinition(
         id="68",
-        name='DirectBRIR test [SP=OFF INT=ON FI=ON FO=ON]',
+        name='RVL test [AO=1 FI=ON FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_68.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_68.wav",
         reference_wav_path="Referencefiles/analytical_test_68_reference.wav",
@@ -3980,20 +3876,19 @@ TESTS: tuple[TestDefinition, ...] = (
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
-     TestDefinition(
+    TestDefinition(
         id="68.1",
-        name='DirectBRIR test [SP=OFF INT=ON FI=ON FO=ON]',
+        name='RVL test [AO=1 FI=ON FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-             "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_68.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_68.1.wav",
         reference_wav_path="Referencefiles/analytical_test_68.1_reference.wav",
@@ -4008,18 +3903,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="69",
-        name='DirectBRIR test [SP=OFF INT=ON FI=ON FO=OFF]',
+        name='RVL test [AO=1 FI=ON FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_69.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_69.wav",
         reference_wav_path="Referencefiles/analytical_test_69_reference.wav",
@@ -4032,20 +3926,19 @@ TESTS: tuple[TestDefinition, ...] = (
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
-     TestDefinition(
+    TestDefinition(
         id="69.1",
-        name='DirectBRIR test [SP=OFF INT=ON FI=ON FO=OFF]',
+        name='RVL test [AO=1 FI=ON FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-             "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_69.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_69.1.wav",
         reference_wav_path="Referencefiles/analytical_test_69.1_reference.wav",
@@ -4060,18 +3953,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="70",
-        name='DirectBRIR test [SP=OFF INT=ON FI=OFF FO=ON]',
+        name='RVL test [AO=1 FI=OFF FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_70.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_70.wav",
         reference_wav_path="Referencefiles/analytical_test_70_reference.wav",
@@ -4084,20 +3976,19 @@ TESTS: tuple[TestDefinition, ...] = (
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
-     TestDefinition(
+    TestDefinition(
         id="70.1",
-        name='DirectBRIR test [SP=OFF INT=ON FI=OFF FO=ON]',
+        name='RVL test [AO=1 FI=OFF FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_70.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_70.1.wav",
         reference_wav_path="Referencefiles/analytical_test_70.1_reference.wav",
@@ -4112,18 +4003,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="71",
-        name='DirectBRIR test [SP=OFF INT=ON FI=OFF FO=OFF]',
+        name='RVL test [AO=1 FI=OFF FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_71.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_71.wav",
         reference_wav_path="Referencefiles/analytical_test_71_reference.wav",
@@ -4138,18 +4028,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="71.1",
-        name='DirectBRIR test [SP=OFF INT=ON FI=OFF FO=OFF]',
+        name='RVL test [AO=1 FI=OFF FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: ON\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_71.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_71.1.wav",
         reference_wav_path="Referencefiles/analytical_test_71.1_reference.wav",
@@ -4164,18 +4053,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="72",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=ON FO=ON]',
+        name='RVL test [AO=3 FI=ON FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_72.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_72.wav",
         reference_wav_path="Referencefiles/analytical_test_72_reference.wav",
@@ -4190,18 +4078,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="72.1",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=ON FO=ON]',
+        name='RVL test [AO=1 FI=ON FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_72.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_72.1.wav",
         reference_wav_path="Referencefiles/analytical_test_72.1_reference.wav",
@@ -4216,18 +4103,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="73",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=ON FO=OFF]',
+        name='RVL test [AO=3 FI=ON FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_73.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_73.wav",
         reference_wav_path="Referencefiles/analytical_test_73_reference.wav",
@@ -4240,20 +4126,19 @@ TESTS: tuple[TestDefinition, ...] = (
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
-    TestDefinition(
+     TestDefinition(
         id="73.1",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=ON FO=OFF]',
+        name='RVL test [AO=1 FI=ON FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_73.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_73.1.wav",
         reference_wav_path="Referencefiles/analytical_test_73.1_reference.wav",
@@ -4268,18 +4153,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="74",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=OFF FO=ON]',
+        name='RVL test [AO=3 FI=OFF FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_74.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_74.wav",
         reference_wav_path="Referencefiles/analytical_test_74_reference.wav",
@@ -4292,20 +4176,19 @@ TESTS: tuple[TestDefinition, ...] = (
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
-    TestDefinition(
+     TestDefinition(
         id="74.1",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=OFF FO=ON]',
+        name='RVL test [AO=1 FI=OFF FO=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
         ),
         settings_file="analytical_test_74.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_74.1.wav",
         reference_wav_path="Referencefiles/analytical_test_74.1_reference.wav",
@@ -4320,18 +4203,17 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="75",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=OFF FO=OFF]',
+        name='RVL test [AO=3 FI=OFF FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_75.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_75.wav",
         reference_wav_path="Referencefiles/analytical_test_75_reference.wav",
@@ -4346,421 +4228,20 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="75.1",
-        name='DirectBRIR test [SP=OFF INT=OFF FI=OFF FO=OFF]',
+        name='RVL test [AO=1 FI=OFF FO=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.75,0.43,0.5)\n"
             "\t-Record duration: 2 second\n"
-            "\t-Spatialization: OFF\n"
-            "\t-Interpolation: OFF\n"
+            "\t-Ambisonic Order: 1\n"
             "\t-Fade In: OFF\n"
             "\t-Fade Out: OFF\n"
         ),
         settings_file="analytical_test_75.json",
-        test_target='ListenerDirectBRIRConvolutionModel',
+        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_75.1.wav",
         reference_wav_path="Referencefiles/analytical_test_75.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="76",
-        name='RVL test [AO=1 FI=ON FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_76.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_76.wav",
-        reference_wav_path="Referencefiles/analytical_test_76_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="76.1",
-        name='RVL test [AO=1 FI=ON FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_76.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_76.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_76.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="77",
-        name='RVL test [AO=1 FI=ON FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_77.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_77.wav",
-        reference_wav_path="Referencefiles/analytical_test_77_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="77.1",
-        name='RVL test [AO=1 FI=ON FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_77.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_77.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_77.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="78",
-        name='RVL test [AO=1 FI=OFF FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_78.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_78.wav",
-        reference_wav_path="Referencefiles/analytical_test_78_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="78.1",
-        name='RVL test [AO=1 FI=OFF FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_78.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_78.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_78.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="79",
-        name='RVL test [AO=1 FI=OFF FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_79.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_79.wav",
-        reference_wav_path="Referencefiles/analytical_test_79_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="79.1",
-        name='RVL test [AO=1 FI=OFF FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_79.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_79.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_79.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="80",
-        name='RVL test [AO=3 FI=ON FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_80.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_80.wav",
-        reference_wav_path="Referencefiles/analytical_test_80_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="80.1",
-        name='RVL test [AO=1 FI=ON FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_80.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_80.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_80.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="81",
-        name='RVL test [AO=3 FI=ON FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_81.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_81.wav",
-        reference_wav_path="Referencefiles/analytical_test_81_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-     TestDefinition(
-        id="81.1",
-        name='RVL test [AO=1 FI=ON FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: ON (FI: 50 ms ,Rise: 10 ms)\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_81.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_81.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_81.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="82",
-        name='RVL test [AO=3 FI=OFF FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_82.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_82.wav",
-        reference_wav_path="Referencefiles/analytical_test_82_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-     TestDefinition(
-        id="82.1",
-        name='RVL test [AO=1 FI=OFF FO=ON]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: ON (F0: 1 second ,Rise: 100 ms)\n"
-        ),
-        settings_file="analytical_test_82.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_82.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_82.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(0.75, 0.43, 0.5),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="83",
-        name='RVL test [AO=3 FI=OFF FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (1.0,0.0,0.0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_83.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_83.wav",
-        reference_wav_path="Referencefiles/analytical_test_83_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(1.0, 0.0, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-    TestDefinition(
-        id="83.1",
-        name='RVL test [AO=1 FI=OFF FO=OFF]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.75,0.43,0.5)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Ambisonic Order: 1\n"
-            "\t-Fade In: OFF\n"
-            "\t-Fade Out: OFF\n"
-        ),
-        settings_file="analytical_test_83.json",
-        test_target='ListenerAmbisonicReverberantVirtualLoudspeakerModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_83.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_83.1_reference.wav",
         nrmse_margin_percent=1.0,
         osc_action_timeout_seconds=5.0,
         ir_duration_seconds=2.0,

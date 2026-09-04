@@ -21,7 +21,7 @@
 		"ListenerModels": [
 			{
 				"ID": "ReverbPath",
-				"Model": "ListenerDirectBRIRConvolutionModel"
+				"Model": "ListenerAmbisonicReverberantVirtualLoudspeakersModel"
 			}
 		],
 		"EnvironmentModels": [],
@@ -95,13 +95,10 @@
 			"parameters": [ "DefaultListener", "BRIR1" ]
 		},
 		{
-			"command": "/listener/enableInterpolation",
-			"parameters": [ "DefaultListener", "false" ]
-		},
-		{
-			"command": "/listener/enableSpatialization",
-			"parameters": [ "DefaultListener", "false" ]
+			"command": "/listener/setAmbisonicsOrder",
+			"parameters": [ "ReverbPath", 3 ]
 		}
+		
 
 	],
 	"_comment_SceneConfiguration": "In this section you can load configuration parameters, following the OSC format."

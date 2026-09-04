@@ -3,7 +3,7 @@ wav_file: analytical_test_69.1_reference.wav
 
 software:
   brt_version: "3.0.7"
-  berta_renderer_version: "3.13.0"
+  berta_renderer_version: "3.14.0"
 
 audio:
   sample_rate: 48000
@@ -17,18 +17,18 @@ recording:
   delay_samples: 0
   impulse_position:
     x: 0.75
-    y: 0.43
+    y: 0.42
     z: 0.5
 
 models:
   
   - id: ReverbPathPath
-    type: ListenerDirectBRIRConvolutionModel
+    type: ListenerAmbisonicReverberantVirtualLoudspeakersModel
     enabled: true
     parameters:
-      spatialization: false
       gain: 0.00
-      interpolation: true
+      ambisonic order: 1
+      ambisonic normalization: N3D
       
 
 resources:
