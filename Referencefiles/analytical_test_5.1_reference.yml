@@ -1,5 +1,5 @@
-reference_id: analytical_test_4_reference
-wav_file: analytical_test_4_reference.wav
+reference_id: analytical_test_5.1_reference
+wav_file: analytical_test_5.1_reference.wav
 
 software:
   brt_version: "3.0.7"
@@ -16,7 +16,7 @@ recording:
   period_samples: 0
   delay_samples: 0
   impulse_position:
-    x: 1.0
+    x: -1.0
     y: 0.0
     z: 0.0
   directivity: "CardioidDirectivityIR_30dB_lowpass_512_48K.sofa"
@@ -35,8 +35,8 @@ models:
   - id: Directivity1
     type: DirectivityModel
     parameters:
-      directivity: true
-      
+      directivity: false
+         
 
 resources:
   hrtf:

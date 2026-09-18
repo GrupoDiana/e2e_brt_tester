@@ -3,7 +3,7 @@ wav_file: analytical_test_7_reference.wav
 
 software:
   brt_version: "3.0.7"
-  berta_renderer_version: "3.13.0"
+  berta_renderer_version: "3.14.0"
 
 audio:
   sample_rate: 48000
@@ -16,19 +16,25 @@ recording:
   period_samples: 0
   delay_samples: 0
   impulse_position:
-    x: 0.71
-    y: 0.71
+    x: 1.0
+    y: 0.0
     z: 0.0
 
 models:
-  - id: FreeField
-    type: FreeFieldEnvironmentModel
+  - id: DirectPath
+    type: ListenerDirectHRTFConvolutionModel
     enabled: true
     parameters:
-      propagarion_delay: false
-      distance_attenuation: -6.0 dB
-      
-      
+      spatialization: false
+      interpolation: true
+      near_field_effect: false
+      parallax_correction: true
+      itd_simulation: true
+
+  - id: FIR
+    type: FIRBilateralFilter
+    enable: true
+         
 
 resources:
   hrtf:
@@ -38,6 +44,9 @@ resources:
   filter:
     id: DefaultNFFilters
     file: "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa" 
+    
+    id: EarMuffs
+    file: "resources//Filters//Phone_Compensation_JBLQuantum100_48000.sofa"
 
 notes: >
-  Reference generated for validating the directivity of the source.
+  Reference generated for validating the bilateral filters.

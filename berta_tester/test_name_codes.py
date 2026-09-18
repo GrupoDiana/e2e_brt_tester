@@ -11,7 +11,7 @@ class TestNameCode:
 
 TEST_NAME_CODES: tuple[TestNameCode, ...] = (
     TestNameCode("P", "Impulse position"),
-    TestNameCode("CARD", "Source position relative to the cardioid"),
+    TestNameCode("DIR", "Directivity"),
     TestNameCode("INT", "Interpolation"),
     TestNameCode("ATT", "Distance attenuation"),
     TestNameCode("PD", "Propagation delay"),
@@ -30,7 +30,7 @@ TEST_NAME_CODES: tuple[TestNameCode, ...] = (
 
 TARGET_CODE_NAMES: dict[str, tuple[str, ...]] = {
     "ListenerDirectHRTFConvolutionModel": ("P", "INT", "NF", "D", "BS"),
-    "Directivity": ("CARD", "INT"),
+    "Directivity": ("DIR"),
     "FreeFieldEnvironmentModel": ("ATT", "PD", "SD", "BS"),
     "ISMEnvironmentModel": ("O", "D", "SD", "BS", "ABS"),
     "SDNEnvironmentModel": ("SD", "BS", "ABS"),

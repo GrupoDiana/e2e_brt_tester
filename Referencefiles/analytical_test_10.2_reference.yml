@@ -40,4 +40,3 @@ resources:
     file: "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa" 
 
 notes: >
-  Reference generated for validating the directivity of the source.

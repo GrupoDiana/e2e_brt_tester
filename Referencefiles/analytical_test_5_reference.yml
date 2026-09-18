@@ -1,14 +1,14 @@
-reference_id: analytical_test_4_reference
-wav_file: analytical_test_4_reference.wav
+reference_id: analytical_test_5_reference
+wav_file: analytical_test_5_reference.wav
 
 software:
   brt_version: "3.0.7"
-  berta_renderer_version: "3.13.0"
+  berta_renderer_version: "3.14.0"
 
 audio:
   sample_rate: 48000
-  frame_size: 64
-  duration_seconds: 2.0
+  frame_size: 512
+  duration_seconds: 1.0
 
 recording:
   command: "/recordIR"
@@ -16,21 +16,27 @@ recording:
   period_samples: 0
   delay_samples: 0
   impulse_position:
-    x: -0.9
-    y: 0.41
+    x: 1.0
+    y: 0.0
     z: 0.0
+  directivity: "CardioidDirectivityIR_30dB_lowpass_512_48K.sofa"
 
 models:
   - id: DirectPath
     type: ListenerDirectHRTFConvolutionModel
-    enabled: false
+    enabled: true
     parameters:
       spatialization: false
       interpolation: true
       near_field_effect: false
       parallax_correction: true
       itd_simulation: true
-      
+
+  - id: Directivity1
+    type: DirectivityModel
+    parameters:
+      directivity: false
+         
 
 resources:
   hrtf:

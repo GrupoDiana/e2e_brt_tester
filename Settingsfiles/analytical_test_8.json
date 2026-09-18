@@ -111,7 +111,7 @@
 		},
 		{
 			"command": "/environment/setDistanceAttenuationFactor",
-			"parameters": [ "FreeField", -7 ]
+			"parameters": [ "FreeField", -6 ]
 		}
 	],
 	"_comment_SceneConfiguration": "In this section you can load configuration parameters, following the OSC format."

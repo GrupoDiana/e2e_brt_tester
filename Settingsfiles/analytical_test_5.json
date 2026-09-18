@@ -1,7 +1,7 @@
 {
 	"GeneralSettings": {
 		"SampleRate": 48000,
-		"BufferSize": 64,
+		"BufferSize": 256,
 		"BufferFrames": 4,
 		"OSCListenPort": 10017,
 		"ExtrapolationMethod": "NearestPoint",
@@ -106,17 +106,8 @@
 		},
 		{
 			"command": "/source/enableDirectivity",
-			"parameters": [ "SoundSource1", "true" ]
-		},
-		{
-			"command": "/source/location",
-			"parameters": [ "SoundSource1", -0.9, 0.41, 0 ]
-		},
-		{
-			"command": "/enableModel",
-			"parameters": [ "DirectPath", "false" ]
+			"parameters": [ "SoundSource1", "false" ]
 		}
-
 	],
 	"_comment_SceneConfiguration": "In this section you can load configuration parameters, following the OSC format."
 }

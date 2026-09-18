@@ -26,7 +26,7 @@ models:
     enabled: true
     parameters:
       propagarion_delay: false
-      distance_attenuation: -7.0 dB
+      distance_attenuation: -6.0 dB
       
       
 
@@ -40,4 +40,3 @@ resources:
     file: "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa" 
 
 notes: >
-  Reference generated for validating the directivity of the source.

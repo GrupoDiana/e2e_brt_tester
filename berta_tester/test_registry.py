@@ -75,21 +75,90 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="4",
-        name='Directivity test [CARD=in]',
+        name='Directivity test [DIR=ON]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (-1,0,0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Source directivity: in cardioid\n"
+            "\t-Impulse position: (1,0,0)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: on\n"
         ),
         settings_file="analytical_test_4.json",
         test_target='Directivity',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_4.wav",
-        reference_wav_path="Referencefiles/analytical_test_6_reference.wav",
+        reference_wav_path="Referencefiles/analytical_test_4_reference.wav",
         nrmse_margin_percent=1.0,
         osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(-1.0, 0.0, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="4.1",
+        name='Directivity test [DIR=ON]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (-1,0,0)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: on\n"
+        ),
+        settings_file="analytical_test_4.json",
+        test_target='Directivity',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_4.1.wav",
+        reference_wav_path="Referencefiles/analytical_test_4.1_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(-1.0, 0.0, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="4.2",
+        name='Directivity test [DIR=ON]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (0,1,0.5)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: on\n"
+        ),
+        settings_file="analytical_test_4.json",
+        test_target='Directivity',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_4.2.wav",
+        reference_wav_path="Referencefiles/analytical_test_4.2_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(-1.0, 0.0, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="4.3",
+        name='Directivity test [DIR=ON]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (0.5,0.5,0.7)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: on\n"
+        ),
+        settings_file="analytical_test_4.json",
+        test_target='Directivity',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_4.3.wav",
+        reference_wav_path="Referencefiles/analytical_test_4.3_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
         ir_period_samples=0,
         ir_delay_samples=0,
         ir_position=(-1.0, 0.0, 0.0),
@@ -98,63 +167,128 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="5",
-        name='Directivity test [CARD=out]',
+        name='Directivity test [DIR=OFF]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (-0.9,0.41,0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Source directivity: out of cardioid\n"
+            "\t-Impulse position: (1,0,0)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: off\n"
         ),
         settings_file="analytical_test_5.json",
         test_target='Directivity',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_5.wav",
-        reference_wav_path="Referencefiles/analytical_test_6_reference.wav",
+        reference_wav_path="Referencefiles/analytical_test_5_reference.wav",
         nrmse_margin_percent=1.0,
         osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
+        ir_duration_seconds=1.0,
         ir_period_samples=0,
         ir_delay_samples=0,
-        ir_position=(-0.9, 0.41, 0.0),
+        ir_position=(-1.0, 0.0, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="5.1",
+        name='Directivity test [DIR=OFF]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (-1,0,0)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: off\n"
+        ),
+        settings_file="analytical_test_5.json",
+        test_target='Directivity',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_5.1.wav",
+        reference_wav_path="Referencefiles/analytical_test_5.1_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(-1.0, 0.0, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="5.2",
+        name='Directivity test [DIR=OFF]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (0,1,0.5)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: off\n"
+        ),
+        settings_file="analytical_test_5.json",
+        test_target='Directivity',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_5.2.wav",
+        reference_wav_path="Referencefiles/analytical_test_5.2_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(-1.0, 0.0, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="5.3",
+        name='Directivity test [DIR=OFF]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (0.5,0.5,0.7)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Source directivity: off\n"
+        ),
+        settings_file="analytical_test_5.json",
+        test_target='Directivity',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_5.3.wav",
+        reference_wav_path="Referencefiles/analytical_test_5.3_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(-1.0, 0.0, 0.0),
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
     TestDefinition(
         id="6",
-        name='Directivity test [CARD=in INT=15]',
+        name='Bilateral Filter test (SOS)',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (-0.1,0,0)\n"
-            "\t-Record duration: 2 second\n"
-            "\t-Source directivity: in cardioid\n"
-            "\t-Interpolation: 15\n"
+            "\t-Impulse position: (1.0,0.0,0.0)\n"
+            "\t-Record duration: 1 second\n"
         ),
         settings_file="analytical_test_6.json",
-        test_target='Directivity',
+        test_target='BilateralFilters',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_6.wav",
         reference_wav_path="Referencefiles/analytical_test_6_reference.wav",
         nrmse_margin_percent=1.0,
         osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=2.0,
+        ir_duration_seconds=1.0,
         ir_period_samples=0,
         ir_delay_samples=0,
-        ir_position=(-0.1, 0.0, 0.0),
+        ir_position=(-1.0, 0.0, 0.0),
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
     TestDefinition(
         id="7",
-        name='FreeField test [ATT=6dB SD=1m]',
+        name='Bilateral Filter test (FIR)',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (0.71,0.71,0.0)\n"
+            "\t-Impulse position: (1.0,0.0,0.0)\n"
             "\t-Record duration: 1 second\n"
-            "\t-Distance attenuation: 6db\n"
-            "\t-Source distance: 1m\n"
         ),
         settings_file="analytical_test_7.json",
-        test_target='FreeFieldEnvironmentModel',
+        test_target='BilateralFilters',
         test_type=TestType.ANALYTICAL,
         generated_wav_path="Results/analytical_ir/generated_test_7.wav",
         reference_wav_path="Referencefiles/analytical_test_7_reference.wav",
@@ -163,42 +297,18 @@ TESTS: tuple[TestDefinition, ...] = (
         ir_duration_seconds=1.0,
         ir_period_samples=0,
         ir_delay_samples=0,
-        ir_position=(0.71, 0.71, 0.0),
+        ir_position=(-1.0, 0.0, 0.0),
         enable_complementary_diagnostics=True,
         detect_channel_swap=True,
     ),
     TestDefinition(
-        id="7.1",
-        name='FreeField test [ATT=6dB SD=10m]',
-        description=(
-            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
-            "\t-Impulse position: (7.17,7.17,0.0)\n"
-            "\t-Record duration: 1 second\n"
-            "\t-Distance attenuation: 6db\n"
-            "\t-Source distance: 10m\n"
-        ),
-        settings_file="analytical_test_7.json",
-        test_target='FreeFieldEnvironmentModel',
-        test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_7.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_7.1_reference.wav",
-        nrmse_margin_percent=1.0,
-        osc_action_timeout_seconds=5.0,
-        ir_duration_seconds=1.0,
-        ir_period_samples=0,
-        ir_delay_samples=0,
-        ir_position=(7.17, 7.17, 0.0),
-        enable_complementary_diagnostics=True,
-        detect_channel_swap=True,
-    ),
-     TestDefinition(
         id="8",
-        name='FreeField test [ATT=7dB SD=1m]',
+        name='FreeField test [ATT=6dB SD=1m]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
             "\t-Impulse position: (0.71,0.71,0.0)\n"
             "\t-Record duration: 1 second\n"
-            "\t-Distance attenuation: 7db\n"
+            "\t-Distance attenuation: 6db\n"
             "\t-Source distance: 1m\n"
         ),
         settings_file="analytical_test_8.json",
@@ -217,6 +327,54 @@ TESTS: tuple[TestDefinition, ...] = (
     ),
     TestDefinition(
         id="8.1",
+        name='FreeField test [ATT=6dB SD=10m]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (7.17,7.17,0.0)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Distance attenuation: 6db\n"
+            "\t-Source distance: 10m\n"
+        ),
+        settings_file="analytical_test_8.json",
+        test_target='FreeFieldEnvironmentModel',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_8.1.wav",
+        reference_wav_path="Referencefiles/analytical_test_8.1_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(7.17, 7.17, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+     TestDefinition(
+        id="9",
+        name='FreeField test [ATT=7dB SD=1m]',
+        description=(
+            "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
+            "\t-Impulse position: (0.71,0.71,0.0)\n"
+            "\t-Record duration: 1 second\n"
+            "\t-Distance attenuation: 7db\n"
+            "\t-Source distance: 1m\n"
+        ),
+        settings_file="analytical_test_9.json",
+        test_target='FreeFieldEnvironmentModel',
+        test_type=TestType.ANALYTICAL,
+        generated_wav_path="Results/analytical_ir/generated_test_9.wav",
+        reference_wav_path="Referencefiles/analytical_test_9_reference.wav",
+        nrmse_margin_percent=1.0,
+        osc_action_timeout_seconds=5.0,
+        ir_duration_seconds=1.0,
+        ir_period_samples=0,
+        ir_delay_samples=0,
+        ir_position=(0.71, 0.71, 0.0),
+        enable_complementary_diagnostics=True,
+        detect_channel_swap=True,
+    ),
+    TestDefinition(
+        id="9.1",
         name='FreeField test [ATT=7dB SD=10m]',
         description=(
             "A stereo impulse response will be generated using BeRTA and compared with a reference file, using a strict NRMSE per channel.\n"
@@ -225,11 +383,11 @@ TESTS: tuple[TestDefinition, ...] = (
             "\t-Distance attenuation: 7db\n"
             "\t-Source distance: 10m\n"
         ),
-        settings_file="analytical_test_8.json",
+        settings_file="analytical_test_9.json",
         test_target='FreeFieldEnvironmentModel',
         test_type=TestType.ANALYTICAL,
-        generated_wav_path="Results/analytical_ir/generated_test_8.1.wav",
-        reference_wav_path="Referencefiles/analytical_test_8.1_reference.wav",
+        generated_wav_path="Results/analytical_ir/generated_test_9.1.wav",
+        reference_wav_path="Referencefiles/analytical_test_9.1_reference.wav",
         nrmse_margin_percent=1.0,
         osc_action_timeout_seconds=5.0,
         ir_duration_seconds=1.0,

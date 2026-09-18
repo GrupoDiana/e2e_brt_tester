@@ -1,14 +1,14 @@
-reference_id: analytical_test_4_reference
-wav_file: analytical_test_4_reference.wav
+reference_id: analytical_test_6_reference
+wav_file: analytical_test_6_reference.wav
 
 software:
   brt_version: "3.0.7"
-  berta_renderer_version: "3.13.0"
+  berta_renderer_version: "3.14.0"
 
 audio:
   sample_rate: 48000
-  frame_size: 64
-  duration_seconds: 2.0
+  frame_size: 512
+  duration_seconds: 1.0
 
 recording:
   command: "/recordIR"
@@ -16,21 +16,25 @@ recording:
   period_samples: 0
   delay_samples: 0
   impulse_position:
-    x: -1.0
+    x: 1.0
     y: 0.0
     z: 0.0
 
 models:
   - id: DirectPath
     type: ListenerDirectHRTFConvolutionModel
-    enabled: false
+    enabled: true
     parameters:
       spatialization: false
       interpolation: true
       near_field_effect: false
       parallax_correction: true
       itd_simulation: true
-      
+
+  - id: EarMuffs
+    type: SOSBilateralFilter
+    enable: true
+         
 
 resources:
   hrtf:
@@ -40,10 +44,9 @@ resources:
   filter:
     id: DefaultNFFilters
     file: "resources//Filters//NearFieldCompensation_ILD_1.2m_48Khz.sofa" 
-  directivity:  
-    id: Directivity1
-    file: "resources//Directivity//CardioidDirectivityIR_30dB_lowpass_512_48K.sofa"
-    spatial_resolution: 15
+    
+    id: EarMuffs
+    file: "resources//Filters//EarMuffFilter_48Khz.sofa"
 
 notes: >
-  Reference generated for validating the directivity of the source.
+  Reference generated for validating the bilateral filters.
